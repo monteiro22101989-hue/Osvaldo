@@ -1,0 +1,58 @@
+<%-include("../partials/header")%>
+<%-include("../partials/navbar")%>
+<div class="container">
+    <hr>
+    <h2>Chapters</h2>
+    <a href="/chapter/admin/new">Create </a>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>title</th>
+                <th>content</th>
+                <th>order</th>
+                <th>characters</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%chapters.forEach(chapter => {%>
+                <tr>
+                    <th><%-chapter.title%></th>
+                    <th><%-chapter.content%></th>
+                    <th><%-chapter.order%></th>
+                    <th>
+                    
+                        <% chapter.characters.forEach(characters => {%>
+                            <%-characters.name%>    
+                        <%})%>  
+
+                    <th>
+                    </th>
+                    </th>
+                    <th>
+                        <a class="btn btn-warning" href="/chapter/admin/upDate/<%-chapter.id%>">Up date</a>
+                        <form action="/chapter/delete" method="post" style="display: inline;" onsubmit="confirmDelete(event, this)">
+                            <input type="hidden" name="id" value="<%=chapter.id%>">
+                            <button class="btn btn-danger" >Delete</button>
+
+                        </form>
+                    </th>
+                </tr>
+            <%})%>    
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+    function confirmDelete(event, form){
+        event.preventDefault();
+        console.log("Form didnt submit");
+        var decision = confirm("do you realu want to delete this chapter");
+
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
+<%-include("../partials/footer")%>

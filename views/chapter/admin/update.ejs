@@ -1,0 +1,42 @@
+<%-include("../../partials/header")%>
+<body>
+    <div class="container">
+        <div class="card-header my-3">
+            <h1>Up date</h1>
+        </div>
+        <div class="card-body">
+            <form action="/chapter/save" method="POST">
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" value="<%-chapter.title%>" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea class="form-control" id="content" name="content"><%-chapter.content%></textarea>
+                </div>
+                 <div class="form-group">
+                    <label for="ordem">Order</label>
+                    <input type="number" class="form-control" id="ordem" value="<%-chapter.order%>" name="ordem" placeholder="Enter the order of the chapter">
+                </div>
+                <input type="hidden" name="id" value="<%-chapter.id%>">
+
+                <button type="submit" class="btn btn-primary">Save Chapter</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+<%-include("../../partials/footer")%>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        language: 'pt_BR', //<---fizemos o download  da lingua e colocamos na pasta e depois mudamos aqui-->
+        selector: "#content",
+        license_key: 'gpl', // <--- ADICIONE ESTA LINHA PARA REMOVER O AVISO da chave
+        plugins: [
+            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
+        ]
+
+    })
+</script>

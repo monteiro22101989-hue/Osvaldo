@@ -1,0 +1,48 @@
+<%-include("../partials/header")%>
+<%-include("../partials/navbar")%>
+<div class="container">
+    <hr>
+    <h2>Characters</h2>
+    <a href="/character/admin/new">Create Character </a>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>name</th>
+                <th>nickname</th>
+                <th>state</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%characters.forEach(character => {%>
+                <tr>
+                    <th><%-character.name%></th>
+                    <th><%-character.nickname%></th>
+                    <th><%-character.state%></th>
+                    <th>
+                        <a class="btn btn-warning" href="/character/admin/update/<%-character.id%>">Update</a>
+                        <form action="/character/delete" method="post" style="display: inline;" onsubmit="confirmDelete(event, this)">
+                            <input type="hidden" name="id" value="<%=character.id%>">
+                            <button class="btn btn-danger" >Delete</button>
+
+                        </form>
+                    </th>
+                </tr>
+            <%})%>    
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+    function confirmDelete(event, form){
+        event.preventDefault();
+        console.log("Form didnt submit");
+        var decision = confirm("do you realu want to delete this chapter");
+
+        if(decision){
+            form.submit();
+        }
+    }
+</script>
+<%-include("../partials/footer")%>
