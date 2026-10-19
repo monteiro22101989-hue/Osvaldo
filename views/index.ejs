@@ -1,14 +1,103 @@
-<%-include('partials/header')%>
+<%-include('partials/headerindex')%>
 <%-include('partials/navbar')%>
-<body>
-    <div class="container">
-        <div class="card-header">
+
+
+<link rel="stylesheet" href="/css/home.css">
+
+<main class="narneiro-home">
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <span class="hero-label">BEM-VINDO AO NARNEIRO</span>
+
+            <h1>O teu universo começa aqui.</h1>
+
+            <p>
+                Organiza histórias, descobre personagens e acompanha
+                cada acontecimento do teu mundo.
+            </p>
+
+            <a href="/chapter/index" class="btn-hero">
+                Explorar o universo <span>&rarr;</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="universe-section">
+
+        <div class="section-heading">
+            <span class="section-eyebrow">O TEU MUNDO</span>
+
+            <h2>Explora o teu universo</h2>
+
+            <p>
+                Tudo o que precisas para construir e organizar
+                a tua história num só lugar.
+            </p>
+        </div>
+
+        <div class="universe-grid">
+
+            <a href="/chapter/index" class="universe-card">
+                <div class="card-image">
+                    <img src="/img/chapter.jpg" alt="Livro aberto">
+                    <span class="card-number">01</span>
+                </div>
+                <div class="card-content">
+                    <h3>Capítulos</h3>
+                    <p>Organiza e acompanha cada parte da tua narrativa.</p>
+                    <span class="card-link">Aceder aos capítulos &rarr;</span>
+                </div>
+            </a>
+
+            <a href="/character/index" class="universe-card">
+                <div class="card-image">
+                    <img src="/img/personagem.jpg" alt="Personagem">
+                    <span class="card-number">02</span>
+                </div>
+                <div class="card-content">
+                    <h3>Personagens</h3>
+                    <p>Descobre as personagens e as suas histórias.</p>
+                    <span class="card-link">Ver personagens &rarr;</span>
+                </div>
+            </a>
+
+            <a href="/summary/index" class="universe-card">
+                <div class="card-image">
+                    <img src="/img/resume.jpg" alt="Pergaminho">
+                    <span class="card-number">03</span>
+                </div>
+                <div class="card-content">
+                    <h3>Resumos</h3>
+                    <p>Consulta os pontos essenciais da narrativa.</p>
+                    <span class="card-link">Consultar resumos &rarr;</span>
+                </div>
+            </a>
+
+            <a href="/event/index" class="universe-card">
+                <div class="card-image">
+                    <img src="/img/chronology.jpg" alt="Evento fantástico">
+                    <span class="card-number">04</span>
+                </div>
+                <div class="card-content">
+                    <h3>Eventos</h3>
+                    <p>Organiza os acontecimentos importantes do teu universo.</p>
+                    <span class="card-link">Explorar eventos &rarr;</span>
+                </div>
+            </a>
 
         </div>
-        <div class="card-body">
+    </section>
 
-        </div>
-    </div>
-</body>
+    <footer class="home-footer">
+        <span>Narneiro &copy; <%= new Date().getFullYear() %></span>
+        <span>O teu mundo. As tuas histórias.</span>
+    </footer>
+
+</main>
+
+
 
 <%-include('partials/footer')%>

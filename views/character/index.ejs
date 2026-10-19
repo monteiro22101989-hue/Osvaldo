@@ -1,48 +1,120 @@
-<%-include("../partials/header")%>
-<%-include("../partials/navbar")%>
-<div class="container">
-    <hr>
-    <h2>Characters</h2>
-    <a href="/character/admin/new">Create Character </a>
-    <hr>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>name</th>
-                <th>nickname</th>
-                <th>state</th>
-            </tr>
-        </thead>
-        <tbody>
-            <%characters.forEach(character => {%>
-                <tr>
-                    <th><%-character.name%></th>
-                    <th><%-character.nickname%></th>
-                    <th><%-character.state%></th>
-                    <th>
-                        <a class="btn btn-warning" href="/character/admin/update/<%-character.id%>">Update</a>
-                        <form action="/character/delete" method="post" style="display: inline;" onsubmit="confirmDelete(event, this)">
-                            <input type="hidden" name="id" value="<%=character.id%>">
-                            <button class="btn btn-danger" >Delete</button>
 
-                        </form>
-                    </th>
-                </tr>
-            <%})%>    
-        </tbody>
-    </table>
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<div class="container character-page">
+
+    
+<div class="character-hero">
+    <div class="character-hero-overlay"></div>
+
+    <div class="character-hero-content">
+        <span class="character-eyebrow">O TEU UNIVERSO</span>
+
+        <h1>Personagens</h1>
+
+        <p>
+            Descobre os protagonistas, organiza as suas histórias
+            e dá vida ao teu universo.
+        </p>
+
+        <a href="/character/admin/new" class="btn btn-create-character">
+            <span>+</span> Criar personagem
+        </a>
+    </div>
+</div>
+
+    <div class="character-panel">
+
+        <div class="character-panel-header">
+            <h2>As tuas personagens</h2>
+            <span class="character-count">
+                <%= characters.length %>
+                <%= characters.length === 1 ? "personagem" : "personagens" %>
+            </span>
+        </div>
+
+        <% if (characters.length === 0) { %>
+
+            <div class="character-empty">
+                <h3>Ainda não existem personagens</h3>
+                <p>Começa a construir o teu universo adicionando a primeira personagem.</p>
+                <a href="/character/admin/new" class="btn btn-create-character">
+                    Criar primeira personagem
+                </a>
+            </div>
+
+        <% } else { %>
+
+            <div class="table-responsive">
+                <table class="table character-table">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Apelido</th>
+                            <th>Estado</th>
+                            <th class="character-actions-heading">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% characters.forEach(character => { %>
+                            <tr>
+                                <td class="character-name">
+                                    <%= character.name %>
+                                </td>
+
+                                <td>
+                                    <%= character.nickname || "—" %>
+                                </td>
+
+                                <td>
+                                    <span class="character-state">
+                                        <%= character.state || "Não definido" %>
+                                    </span>
+                                </td>
+
+                                <td class="character-actions">
+                                    <a
+                                        class="btn btn-edit-character"
+                                        href="/character/admin/update/<%= character.id %>">
+                                        Editar
+                                    </a>
+
+                                    <form
+                                        action="/character/delete"
+                                        method="post"
+                                        onsubmit="return confirmDelete(this);">
+
+                                        <input
+                                            type="hidden"
+                                            name="id"
+                                            value="<%= character.id %>">
+
+                                        <button type="submit"
+                                            class="btn btn-delete-character">
+                                            Excluir
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+
+        <% } %>
+
+    </div>
 
 </div>
 
 <script>
-    function confirmDelete(event, form){
-        event.preventDefault();
-        console.log("Form didnt submit");
-        var decision = confirm("do you realu want to delete this chapter");
-
-        if(decision){
-            form.submit();
-        }
+    function confirmDelete(form) {
+        return confirm(
+            "Tens a certeza de que queres excluir esta personagem?"
+        );
     }
 </script>
-<%-include("../partials/footer")%>
+
+<%- include("../partials/footer") %>

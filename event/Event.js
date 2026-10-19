@@ -11,7 +11,7 @@ const Event = connection.define("event", {
         allowNull: false
     },
     chronologicalOrder: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
         allowNull: false
     },
     importance: {

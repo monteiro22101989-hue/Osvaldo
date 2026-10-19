@@ -1,6 +1,46 @@
 <%-include("../partials/header")%>
 <%-include("../partials/navbar")%>
 <div class="container">
-    <h1>event index</h1>
+   
+    
+    <hr>
+    <h2>Events</h2>
+    <a href="#" class="btn btn-primary">create Event</a>
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>description</th>
+                <th>chronologia order</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <%events.forEach(events =>{%>
+            <tr>
+                <th><%-events.title%></th>
+                <th><%-events.description%></th>
+                <th><%-events.chronologicalOrder%></th>
+               
+            </tr>
+            <%})%>
+        </tbody>
+    </table>
+
+
+
+    <div class="card-header">
+
+    </div>
+    <div class="body">
+
+    </div>
 </div>
+
+
+
+
+
 <%-include("../partials/footer")%>

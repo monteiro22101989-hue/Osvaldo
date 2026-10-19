@@ -1,58 +1,152 @@
-<%-include("../partials/header")%>
-<%-include("../partials/navbar")%>
-<div class="container">
-    <hr>
-    <h2>Chapters</h2>
-    <a href="/chapter/admin/new">Create </a>
-    <hr>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>title</th>
-                <th>content</th>
-                <th>order</th>
-                <th>characters</th>
-            </tr>
-        </thead>
-        <tbody>
-            <%chapters.forEach(chapter => {%>
-                <tr>
-                    <th><%-chapter.title%></th>
-                    <th><%-chapter.content%></th>
-                    <th><%-chapter.order%></th>
-                    <th>
-                    
-                        <% chapter.characters.forEach(characters => {%>
-                            <%-characters.name%>    
-                        <%})%>  
+```ejs
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
 
-                    <th>
-                    </th>
-                    </th>
-                    <th>
-                        <a class="btn btn-warning" href="/chapter/admin/upDate/<%-chapter.id%>">Up date</a>
-                        <form action="/chapter/delete" method="post" style="display: inline;" onsubmit="confirmDelete(event, this)">
-                            <input type="hidden" name="id" value="<%=chapter.id%>">
-                            <button class="btn btn-danger" >Delete</button>
+<main class="chapter-page">
 
-                        </form>
-                    </th>
-                </tr>
-            <%})%>    
-        </tbody>
-    </table>
+    <!-- Banner principal -->
+    <section class="chapter-hero">
+        <div class="chapter-hero-overlay"></div>
 
-</div>
+        <div class="chapter-hero-content">
+            <span class="chapter-eyebrow">O TEU UNIVERSO</span>
+
+            <h1>Chapters</h1>
+
+            <p>
+                Organiza os acontecimentos, desenvolve as tuas histórias
+                e constrói o teu universo capítulo a capítulo.
+            </p>
+
+            <a href="/chapter/admin/new" class="btn-chapter-create">
+                <span>+</span> Create Chapter
+            </a>
+        </div>
+    </section>
+
+    <!-- Área de gestão dos capítulos -->
+    <div class="container chapter-content">
+
+        <section class="chapter-panel">
+
+            <div class="chapter-panel-heading">
+                <div>
+                    <span class="chapter-section-label">GESTÃO DO UNIVERSO</span>
+                    <h2>Chapter Library</h2>
+                    <p>Consulta e gere os capítulos da tua história.</p>
+                </div>
+
+                <span class="chapter-count">
+                    <%= chapters.length %>
+                    <%= chapters.length === 1 ? "chapter" : "chapters" %>
+                </span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table chapter-table">
+
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Order</th>
+                            <th>Characters</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% chapters.forEach(chapter => { %>
+                            <tr>
+                                <td class="chapter-title-cell">
+                                    <%= chapter.title %>
+                                </td>
+
+                                <td class="chapter-content-cell">
+                                    <%= chapter.content %>
+                                </td>
+
+                                <td>
+                                    <span class="chapter-order">
+                                        <%= chapter.order %>
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <div class="chapter-character-list">
+                                        <% if (chapter.characters && chapter.characters.length > 0) { %>
+
+                                            <% chapter.characters.forEach(character => { %>
+                                                <span class="chapter-character-tag">
+                                                    <%= character.name %>
+                                                </span>
+                                            <% }) %>
+
+                                        <% } else { %>
+                                            <span class="chapter-no-characters">
+                                                No characters
+                                            </span>
+                                        <% } %>
+                                    </div>
+                                </td>
+
+                                <td class="chapter-actions">
+                                    <a
+                                        class="btn-chapter-edit"
+                                        href="/chapter/admin/upDate/<%= chapter.id %>">
+                                        Edit
+                                    </a>
+
+                                    <form
+                                        action="/chapter/delete"
+                                        method="post"
+                                        onsubmit="return confirmDelete();">
+
+                                        <input
+                                            type="hidden"
+                                            name="id"
+                                            value="<%= chapter.id %>">
+
+                                        <button
+                                            type="submit"
+                                            class="btn-chapter-delete">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+
+                        <% if (chapters.length === 0) { %>
+                            <tr>
+                                <td colspan="5" class="chapter-empty">
+                                    <div class="chapter-empty-icon">✦</div>
+                                    <h3>No chapters yet</h3>
+                                    <p>
+                                        Your story starts here.
+                                        Create your first chapter!
+                                    </p>
+                                    <a href="/chapter/admin/new" class="btn-chapter-create">
+                                        + Create Chapter
+                                    </a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
 
 <script>
-    function confirmDelete(event, form){
-        event.preventDefault();
-        console.log("Form didnt submit");
-        var decision = confirm("do you realu want to delete this chapter");
-
-        if(decision){
-            form.submit();
-        }
+    function confirmDelete() {
+        return confirm("Do you really want to delete this chapter?");
     }
 </script>
-<%-include("../partials/footer")%>
+
+<%- include("../partials/footer") %>
