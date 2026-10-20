@@ -1,46 +1,123 @@
-<%-include("../partials/header")%>
-<%-include("../partials/navbar")%>
-<div class="container">
-   
-    
-    <hr>
-    <h2>Events</h2>
-    <a href="#" class="btn btn-primary">create Event</a>
-    <hr>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>description</th>
-                <th>chronologia order</th>
-               
-            </tr>
-        </thead>
-        <tbody>
-            <%events.forEach(events =>{%>
-            <tr>
-                <th><%-events.title%></th>
-                <th><%-events.description%></th>
-                <th><%-events.chronologicalOrder%></th>
-               
-            </tr>
-            <%})%>
-        </tbody>
-    </table>
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
 
+<main class="event-page">
 
+    <!-- Banner principal -->
+    <section class="event-hero">
+        <div class="event-hero-overlay"></div>
 
-    <div class="card-header">
+        <div class="event-hero-content">
+            <span class="event-eyebrow">O TEU UNIVERSO</span>
 
+            <h1>Os acontecimentos da tua história</h1>
+
+            <p>
+                Regista os momentos importantes, organiza a cronologia
+                e acompanha tudo o que acontece no teu universo.
+            </p>
+
+            <a href="#" class="btn-event-create">
+                <span>+</span> Create Event
+            </a>
+        </div>
+    </section>
+
+    <!-- Introdução -->
+    <section class="event-intro">
+        <div class="event-intro-heading">
+            <span class="event-section-label">A LINHA DO TEMPO</span>
+
+            <h2>Cada acontecimento conta uma história</h2>
+
+            <p>
+                Reúne os acontecimentos mais importantes num só lugar.
+                Organiza a sequência dos eventos e mantém a cronologia
+                do teu universo sempre clara.
+            </p>
+        </div>
+    </section>
+
+    <!-- Área de gestão dos eventos -->
+    <div class="container event-content">
+
+        <section class="event-panel">
+
+            <div class="event-panel-heading">
+                <div>
+                    <span class="event-section-label">
+                        GESTÃO DO UNIVERSO
+                    </span>
+
+                    <h2>Event Library</h2>
+
+                    <p>Consulta os acontecimentos do teu universo.</p>
+                </div>
+
+                <span class="event-count">
+                    <%= events.length %>
+                    <%= events.length === 1 ? "event" : "events" %>
+                </span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table event-table">
+
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Chronological Order</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% events.forEach(event => { %>
+                            <tr>
+                                <td class="event-title-cell">
+                                    <%= event.title %>
+                                </td>
+
+                                <td class="event-description-cell">
+                                    <%= event.description %>
+                                </td>
+
+                                <td>
+                                    <span class="event-order">
+                                        <%= event.chronologicalOrder %>
+                                    </span>
+                                </td>
+                            </tr>
+                        <% }) %>
+
+                        <% if (events.length === 0) { %>
+                            <tr>
+                                <td colspan="3" class="event-empty">
+                                    <div class="event-empty-icon">✦</div>
+
+                                    <h3>No events yet</h3>
+
+                                    <p>
+                                        Ainda não existem eventos.
+                                        Os acontecimentos da tua história
+                                        começam aqui.
+                                    </p>
+
+                                    <a href="#" class="btn-event-create">
+                                        <span>+</span> Create Event
+                                    </a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+
+                </table>
+            </div>
+
+        </section>
     </div>
-    <div class="body">
 
-    </div>
-</div>
+</main>
 
-
-
-
-
-<%-include("../partials/footer")%>
+<%- include("../partials/footer") %>

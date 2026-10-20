@@ -1,0 +1,1797 @@
+
+/* ===== Página inicial Narneiro ===== */
+
+.narneiro-home {
+    --home-bg: #101820;
+    --home-card: #19242d;
+    --home-gold: #d5b477;
+    --home-text: #f5f2eb;
+    --home-muted: #b5bec4;
+
+    background: var(--home-bg);
+    color: var(--home-text);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ===== Banner principal ===== */
+
+.narneiro-home .hero {
+    min-height: 360px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 55px 24px;
+    text-align: center;
+    background-image: url("/img/map.jpg");
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.narneiro-home .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(10, 17, 23, 0.88),
+        rgba(10, 17, 23, 0.58)
+    );
+}
+
+.narneiro-home .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+}
+
+.narneiro-home .hero-label,
+.narneiro-home .section-eyebrow {
+    color: var(--home-gold);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.narneiro-home .hero h1 {
+    margin: 18px 0;
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--home-text);
+}
+
+.narneiro-home .hero p {
+    max-width: 600px;
+    margin: 0 auto 28px;
+    color: #e0e4e6;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.narneiro-home .btn-hero {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 22px;
+    border: 1px solid var(--home-gold);
+    border-radius: 5px;
+    background: var(--home-gold);
+    color: #17212a;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.narneiro-home .btn-hero:hover {
+    background: transparent;
+    color: var(--home-gold);
+}
+
+/* ===== Secção dos cards ===== */
+
+.narneiro-home .universe-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 65px 24px 80px;
+}
+
+.narneiro-home .section-heading {
+    margin-bottom: 36px;
+    text-align: center;
+}
+
+.narneiro-home .section-heading h2 {
+    margin: 12px 0;
+    font-size: clamp(27px, 4vw, 36px);
+    font-weight: 700;
+    color: var(--home-text);
+}
+
+.narneiro-home .section-heading p {
+    max-width: 580px;
+    margin: 0 auto;
+    color: var(--home-muted);
+    line-height: 1.7;
+}
+
+.narneiro-home .universe-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.narneiro-home .universe-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    background: var(--home-card);
+    color: var(--home-text);
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.narneiro-home .universe-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--home-gold);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+    color: var(--home-text);
+    text-decoration: none;
+}
+
+.narneiro-home .card-image {
+    position: relative;
+    height: 175px;
+    overflow: hidden;
+    background: #26333d;
+}
+
+.narneiro-home .card-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(10, 17, 23, 0.55),
+        transparent 65%
+    );
+}
+
+.narneiro-home .card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.narneiro-home .universe-card:hover .card-image img {
+    transform: scale(1.06);
+}
+
+.narneiro-home .card-number {
+    position: absolute;
+    z-index: 1;
+    right: 14px;
+    bottom: 12px;
+    color: white;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.narneiro-home .card-content {
+    padding: 22px 18px 24px;
+}
+
+.narneiro-home .card-content h3 {
+    margin: 0 0 12px;
+    color: var(--home-text);
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.narneiro-home .card-content p {
+    min-height: 72px;
+    margin-bottom: 20px;
+    color: var(--home-muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.narneiro-home .card-link {
+    color: var(--home-gold);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* ===== Rodapé ===== */
+
+.narneiro-home .home-footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 22px 6%;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--home-muted);
+    font-size: 13px;
+}
+
+.narneiro-home .home-footer span {
+    display: block;
+}
+
+/* ===== Tablets ===== */
+
+@media (max-width: 1000px) {
+    .narneiro-home .universe-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ===== Telemóveis ===== */
+
+@media (max-width: 576px) {
+    .narneiro-home .hero {
+        min-height: 330px;
+        padding: 45px 20px;
+    }
+
+    .narneiro-home .hero p {
+        font-size: 15px;
+    }
+
+    .narneiro-home .universe-section {
+        padding: 45px 18px 55px;
+    }
+
+    .narneiro-home .universe-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .narneiro-home .card-image {
+        height: 200px;
+    }
+
+    .narneiro-home .card-content p {
+        min-height: auto;
+    }
+
+    .narneiro-home .home-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+
+/* ===== Navbar Narneiro ===== */
+
+.narneiro-navbar {
+    position: relative;
+    z-index: 1000;
+    width: 100%;
+    min-height: 76px;
+    padding: 12px 6%;
+    background-color: #101820;
+    border-bottom: 1px solid rgba(213, 180, 119, 0.25);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Marca */
+
+.narneiro-navbar .narneiro-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin-right: 30px;
+    color: #f5f2eb;
+    font-size: 25px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+}
+
+.narneiro-navbar .brand-symbol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid #d5b477;
+    border-radius: 8px;
+    color: #d5b477;
+    font-size: 22px;
+}
+
+/* Links */
+
+.narneiro-navbar .navbar-nav {
+    gap: 8px;
+}
+
+.narneiro-navbar .nav-link {
+    position: relative;
+    padding: 12px 13px !important;
+    color: #c2cbd1;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.narneiro-navbar .nav-link::after {
+    position: absolute;
+    right: 13px;
+    bottom: 5px;
+    left: 13px;
+    height: 2px;
+    background: #d5b477;
+    content: "";
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+}
+
+.narneiro-navbar .nav-link:hover,
+.narneiro-navbar .nav-link:focus {
+    color: #d5b477;
+}
+
+.narneiro-navbar .nav-link:hover::after,
+.narneiro-navbar .nav-link:focus::after {
+    transform: scaleX(1);
+}
+
+/* Botão mobile */
+
+.narneiro-navbar .narneiro-toggler {
+    border: 1px solid rgba(213, 180, 119, 0.55);
+    border-radius: 6px;
+    padding: 8px 10px;
+}
+
+.narneiro-navbar .narneiro-toggler:focus {
+    outline: 2px solid rgba(213, 180, 119, 0.45);
+    outline-offset: 2px;
+}
+
+/* Ícone do botão em fundo escuro */
+
+.narneiro-navbar .navbar-toggler-icon {
+    filter: invert(83%) sepia(20%) saturate(500%)
+            hue-rotate(355deg) brightness(95%);
+}
+
+/* Telemóveis e tablets */
+
+@media (max-width: 991px) {
+    .narneiro-navbar {
+        padding: 12px 20px;
+    }
+
+    .narneiro-navbar .navbar-collapse {
+        padding-top: 12px;
+    }
+
+    .narneiro-navbar .navbar-nav {
+        align-items: stretch !important;
+        gap: 2px;
+    }
+
+    .narneiro-navbar .nav-link {
+        padding: 12px 8px !important;
+    }
+
+    .narneiro-navbar .nav-link::after {
+        right: auto;
+        bottom: 5px;
+        left: 8px;
+        width: 35px;
+    }
+}
+
+
+/* ===== Página de personagens ===== */
+
+.character-page {
+    min-height: 75vh;
+    padding-top: 55px;
+    padding-bottom: 70px;
+    color: #f5f2eb;
+}
+
+.character-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 35px;
+}
+
+.character-eyebrow {
+    color: #d5b477;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.character-heading h1 {
+    margin: 10px 0;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.character-heading p {
+    margin: 0;
+    color: #b5bec4;
+}
+
+.btn-create-character {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 12px 18px;
+    border: 1px solid #d5b477;
+    border-radius: 7px;
+    background: #d5b477;
+    color: #101820;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.btn-create-character:hover {
+    background: #e5c994;
+    border-color: #e5c994;
+    color: #101820;
+    text-decoration: none;
+}
+
+.btn-create-character span {
+    font-size: 21px;
+    line-height: 1;
+}
+
+.character-panel {
+    overflow: hidden;
+    border: 1px solid rgba(213, 180, 119, 0.2);
+    border-radius: 12px;
+    background: #19242d;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.character-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.character-panel-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.character-count {
+    color: #d5b477;
+    font-size: 13px;
+}
+
+.character-table {
+    margin: 0;
+    color: #e9edf0;
+}
+
+.character-table thead th {
+    padding: 17px 24px;
+    border: none;
+    background: #141e26;
+    color: #aeb9c1;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    white-space: nowrap;
+}
+
+.character-table tbody td {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: none;
+    color: #dce2e6;
+    vertical-align: middle;
+}
+
+.character-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.character-table tbody tr:hover {
+    background: rgba(213, 180, 119, 0.045);
+}
+
+.character-table .character-name {
+    color: #f5f2eb;
+    font-weight: 600;
+}
+
+.character-state {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid rgba(213, 180, 119, 0.25);
+    border-radius: 20px;
+    color: #d5b477;
+    font-size: 12px;
+}
+
+.character-actions-heading {
+    text-align: right;
+}
+
+.character-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.character-actions form {
+    display: inline-flex;
+    margin: 0;
+}
+
+.btn-edit-character,
+.btn-delete-character {
+    padding: 7px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-edit-character {
+    border: 1px solid #526c7d;
+    background: transparent;
+    color: #c9dbe7;
+}
+
+.btn-edit-character:hover {
+    background: #314755;
+    color: #fff;
+}
+
+.btn-delete-character {
+    border: 1px solid #8e4545;
+    background: transparent;
+    color: #f0a0a0;
+}
+
+.btn-delete-character:hover {
+    background: #8e4545;
+    color: #fff;
+}
+
+.character-empty {
+    padding: 55px 24px;
+    text-align: center;
+}
+
+.character-empty h3 {
+    margin-bottom: 12px;
+    font-size: 21px;
+}
+
+.character-empty p {
+    margin-bottom: 24px;
+    color: #b5bec4;
+}
+
+@media (max-width: 600px) {
+    .character-page {
+        padding-top: 30px;
+    }
+
+    .character-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .character-heading h1 {
+        font-size: 29px;
+    }
+
+    .character-panel-header {
+        padding: 18px;
+    }
+
+    .character-table thead th,
+    .character-table tbody td {
+        padding: 14px;
+    }
+
+    .character-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .character-actions .btn {
+        width: 100%;
+    }
+}
+
+/* ===== Correção visual: gestão de personagens ===== */
+
+.character-page {
+    background-color: #101820;
+    color: #f5f2eb;
+    min-height: 80vh;
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+/* Fundo geral da página */
+body {
+    background-color: #101820;
+}
+
+/* Painel da tabela */
+.character-page .character-panel {
+    background-color: #19242d;
+    border: 1px solid rgba(213, 180, 119, 0.25);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+/* Cabeçalho do painel */
+.character-page .character-panel-header {
+    background-color: #19242d;
+    color: #f5f2eb;
+}
+
+/* Tabela: remover o fundo claro do Bootstrap */
+.character-page .character-table {
+    width: 100%;
+    margin-bottom: 0;
+    background-color: #19242d;
+    color: #f5f2eb;
+    border-collapse: collapse;
+}
+
+.character-page .character-table thead,
+.character-page .character-table thead tr,
+.character-page .character-table thead th {
+    background-color: #101820;
+    color: #d5b477;
+    border-color: #303b44;
+}
+
+.character-page .character-table tbody,
+.character-page .character-table tbody tr,
+.character-page .character-table tbody td {
+    background-color: #19242d;
+    color: #e8edf0;
+    border-color: #303b44;
+}
+
+/* Efeito ao passar o rato */
+.character-page .character-table tbody tr:hover,
+.character-page .character-table tbody tr:hover td {
+    background-color: #24333e;
+    color: #ffffff;
+}
+
+/* Título e descrição */
+.character-page h1,
+.character-page h2,
+.character-page h3 {
+    color: #f5f2eb;
+}
+
+.character-page p {
+    color: #c0c9cf;
+}
+
+/* Nome da personagem */
+.character-page .character-name {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* Estado da personagem */
+.character-page .character-state {
+    background-color: rgba(213, 180, 119, 0.08);
+    color: #e5c994;
+    border: 1px solid rgba(213, 180, 119, 0.4);
+}
+
+/* Mensagem quando não existem personagens */
+.character-page .character-empty {
+    background-color: #19242d;
+    color: #f5f2eb;
+}
+
+.character-page .character-empty p {
+    color: #c0c9cf;
+}
+
+/* ===== Hero da gestão de personagens ===== */
+
+.character-page {
+    padding-top: 0;
+}
+
+.character-hero {
+    position: relative;
+    min-height: 330px;
+    margin: 0 -15px 35px;
+    padding: 55px 6%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-image: url("/img/map.jpg");
+    background-position: center 45%;
+    background-size: cover;
+    border-bottom: 1px solid rgba(213, 180, 119, 0.3);
+}
+
+/* Camada escura para manter o texto legível */
+.character-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(16, 24, 32, 0.96) 0%,
+        rgba(16, 24, 32, 0.78) 48%,
+        rgba(16, 24, 32, 0.35) 100%
+    );
+}
+
+.character-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+}
+
+.character-hero .character-eyebrow {
+    color: #e2c58c;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+}
+
+.character-hero h1 {
+    margin: 14px 0;
+    color: #fffaf0;
+    font-size: clamp(34px, 5vw, 48px);
+    font-weight: 700;
+}
+
+.character-hero p {
+    max-width: 520px;
+    margin-bottom: 25px;
+    color: #e0e4e6;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+    .character-hero {
+        min-height: 300px;
+        margin-bottom: 25px;
+        padding: 40px 25px;
+        background-position: center;
+    }
+
+    .character-hero-overlay {
+        background: rgba(16, 24, 32, 0.78);
+    }
+
+    .character-hero p {
+        font-size: 14px;
+    }
+}
+
+/* Alinhamento da página de personagens */
+.character-page {
+    padding: 0 15px 50px !important;
+    background-color: #101820;
+}
+
+/* Imagem alinhada com a área de gerenciamento */
+.character-hero {
+    position: relative;
+    width: 100%;
+    min-height: 330px;
+    margin: 0 0 0 0;
+    padding: 55px 6%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
+
+    background-image: url("/img/map.jpg");
+    background-position: center 45%;
+    background-size: cover;
+    border-bottom: 1px solid rgba(213, 180, 119, 0.3);
+    border-radius: 10px 10px 0 0;
+}
+
+/* Sobreposição da imagem */
+.character-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(16, 24, 32, 0.94),
+        rgba(16, 24, 32, 0.55)
+    );
+}
+
+/* Conteúdo por cima da imagem */
+.character-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 650px;
+}
+
+/* Gerenciamento diretamente abaixo da imagem */
+.character-page .character-panel {
+    width: 100%;
+    margin: 0;
+    border-radius: 0 0 10px 10px;
+    box-sizing: border-box;
+}
+
+/* Adaptação para telemóveis */
+@media (max-width: 600px) {
+    .character-hero {
+        min-height: 290px;
+        padding: 35px 24px;
+    }
+
+    .character-hero h1 {
+        font-size: 32px;
+    }
+}
+
+/* Pequeno espaço entre a imagem e o gerenciamento */
+.character-hero {
+    margin-bottom: 6px !important;
+    border-radius: 10px;
+    border-bottom: none;
+}
+
+/* Gerenciamento */
+.character-page .character-panel {
+    margin-top: 0 !important;
+    border-radius: 10px;
+    border: 1px solid #35414a;
+}
+
+/* Cor de fundo do espaço */
+.character-page {
+    background-color: #101820 !important;
+}
+
+
+/* ===== Banner de personagens no padrão da página inicial ===== */
+
+.character-page .character-hero {
+    position: relative;
+
+    /* Ocupa toda a largura do ecrã, fora do container */
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 12px;
+
+    min-height: 360px;
+    padding: 55px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    overflow: hidden;
+
+    background-image: url("/img/map.jpg");
+    background-size: cover;
+    background-position: center;
+    border: none;
+    border-radius: 0;
+
+    text-align: center;
+}
+
+/* Sobreposição escura, como na página inicial */
+.character-page .character-hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(10, 17, 23, 0.88),
+        rgba(10, 17, 23, 0.58)
+    );
+}
+
+/* Texto centralizado */
+.character-page .character-hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.character-page .character-hero h1 {
+    margin: 18px 0;
+    color: #f5f2eb;
+    font-size: clamp(32px, 5vw, 54px);
+    line-height: 1.15;
+}
+
+.character-page .character-hero p {
+    max-width: 600px;
+    margin: 0 auto 28px;
+    color: #e0e4e6;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* Mantém a área de gerenciamento dentro do container */
+.character-page .character-panel {
+    width: 100%;
+    margin-top: 0;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* Adaptação para telemóveis */
+@media (max-width: 600px) {
+    .character-page .character-hero {
+        min-height: 330px;
+        padding: 45px 20px;
+    }
+
+    .character-page .character-hero p {
+        font-size: 15px;
+    }
+}
+
+```css
+/* ===== FOOTER NARNEIRO ===== */
+
+.narneiro-footer {
+    background: #0a1117;
+    color: #e0e4e6;
+    border-top: 1px solid #35414a;
+    margin-top: 70px;
+    padding: 45px 7% 0;
+    font-family: inherit;
+}
+
+.narneiro-footer .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 50px;
+    padding-bottom: 38px;
+}
+
+.narneiro-footer .footer-brand h2 {
+    color: #f5f2eb;
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin: 0 0 16px;
+}
+
+.narneiro-footer .footer-brand h2 span {
+    color: #c9a45c;
+}
+
+.narneiro-footer .footer-brand p {
+    max-width: 320px;
+    color: #aab4bb;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.narneiro-footer .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.narneiro-footer .footer-links h3 {
+    color: #c9a45c;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 5px 0 8px;
+}
+
+.narneiro-footer .footer-links a {
+    color: #aab4bb;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.narneiro-footer .footer-links a:hover {
+    color: #c9a45c;
+    transform: translateX(4px);
+}
+
+.narneiro-footer .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+    border-top: 1px solid #27343d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.narneiro-footer .footer-bottom p,
+.narneiro-footer .footer-bottom span {
+    color: #7f8b93;
+    font-size: 12px;
+    margin: 0;
+}
+
+/* Ajustes para telemóveis */
+
+@media (max-width: 700px) {
+    .narneiro-footer {
+        padding: 35px 24px 0;
+        margin-top: 45px;
+    }
+
+    .narneiro-footer .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
+    }
+
+    .narneiro-footer .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .narneiro-footer .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .narneiro-footer .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .narneiro-footer .footer-brand {
+        grid-column: auto;
+    }
+}
+
+```css
+/* ========================================
+   CHAPTER PAGE - NARNEIRO
+======================================== */
+
+.chapter-page {
+    color: #f5f2eb;
+    background: #101820;
+    min-height: 70vh;
+}
+
+.chapter-page .chapter-hero {
+    position: relative;
+    width: 100%;
+    min-height: 360px;
+    padding: 55px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-image: url("/img/map.jpg");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.chapter-page .chapter-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(10, 17, 23, 0.88),
+        rgba(10, 17, 23, 0.58)
+    );
+}
+
+.chapter-page .chapter-hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.chapter-page .chapter-eyebrow,
+.chapter-page .chapter-section-label {
+    color: #c9a45c;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.chapter-page .chapter-hero h1 {
+    color: #f5f2eb;
+    font-size: clamp(36px, 5vw, 54px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 18px 0;
+}
+
+.chapter-page .chapter-hero p {
+    max-width: 600px;
+    margin: 0 auto 28px;
+    color: #e0e4e6;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.chapter-page .btn-chapter-create {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 23px;
+    background: #c9a45c;
+    color: #101820;
+    border: 1px solid #c9a45c;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.chapter-page .btn-chapter-create span {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.chapter-page .btn-chapter-create:hover {
+    background: #dfbd78;
+    border-color: #dfbd78;
+    color: #101820;
+    text-decoration: none;
+}
+
+.chapter-page .chapter-content {
+    padding-top: 28px;
+    padding-bottom: 20px;
+}
+
+.chapter-page .chapter-panel {
+    background: #141f28;
+    border: 1px solid #35414a;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.chapter-page .chapter-panel-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 28px;
+    border-bottom: 1px solid #35414a;
+}
+
+.chapter-page .chapter-panel-heading h2 {
+    color: #f5f2eb;
+    font-size: 25px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.chapter-page .chapter-panel-heading p {
+    color: #aab4bb;
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.7;
+}
+
+.chapter-page .chapter-count {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    border: 1px solid #49545b;
+    border-radius: 20px;
+    color: #c9a45c;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.chapter-page .chapter-table {
+    width: 100%;
+    margin: 0;
+    color: #e0e4e6;
+    background: transparent;
+    border-collapse: collapse;
+}
+
+.chapter-page .chapter-table thead th {
+    padding: 17px 20px;
+    background: #101820;
+    color: #c9a45c;
+    border: none;
+    border-bottom: 1px solid #35414a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.chapter-page .chapter-table tbody td {
+    padding: 20px;
+    color: #d6dce0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #27343d;
+    vertical-align: middle;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.chapter-page .chapter-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.chapter-page .chapter-table tbody tr:hover td {
+    background: rgba(201, 164, 92, 0.045);
+}
+
+.chapter-page .chapter-table .chapter-title-cell {
+    min-width: 140px;
+    color: #f5f2eb;
+    font-weight: 700;
+}
+
+.chapter-page .chapter-content-cell {
+    min-width: 200px;
+    max-width: 360px;
+    overflow-wrap: anywhere;
+}
+
+.chapter-page .chapter-order {
+    display: inline-flex;
+    min-width: 32px;
+    min-height: 32px;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    color: #c9a45c;
+    background: rgba(201, 164, 92, 0.10);
+    border: 1px solid rgba(201, 164, 92, 0.25);
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+.chapter-page .chapter-character-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 120px;
+}
+
+.chapter-page .chapter-character-tag {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 4px;
+    background: #202e38;
+    border: 1px solid #354753;
+    color: #d9c28e;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.chapter-page .chapter-no-characters {
+    color: #7f8b93;
+    font-size: 12px;
+    font-style: italic;
+}
+
+.chapter-page .chapter-actions {
+    white-space: nowrap;
+}
+
+.chapter-page .chapter-actions form {
+    display: inline-block;
+    margin: 3px 0;
+}
+
+.chapter-page .btn-chapter-edit,
+.chapter-page .btn-chapter-delete {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 3px 2px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.chapter-page .btn-chapter-edit {
+    color: #e5c477;
+    background: rgba(201, 164, 92, 0.10);
+    border: 1px solid #806b42;
+}
+
+.chapter-page .btn-chapter-edit:hover {
+    color: #101820;
+    background: #c9a45c;
+    border-color: #c9a45c;
+}
+
+.chapter-page .btn-chapter-delete {
+    color: #f0a2a2;
+    background: rgba(190, 65, 65, 0.10);
+    border: 1px solid #804747;
+}
+
+.chapter-page .btn-chapter-delete:hover {
+    color: #fff;
+    background: #a83e3e;
+    border-color: #a83e3e;
+}
+
+.chapter-page .chapter-empty {
+    padding: 55px 20px !important;
+    text-align: center;
+}
+
+.chapter-page .chapter-empty-icon {
+    color: #c9a45c;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.chapter-page .chapter-empty h3 {
+    color: #f5f2eb;
+    font-size: 21px;
+    margin: 0 0 10px;
+}
+
+.chapter-page .chapter-empty p {
+    color: #aab4bb;
+    margin: 0 0 22px;
+}
+
+@media (max-width: 768px) {
+    .chapter-page .chapter-hero {
+        min-height: 330px;
+        padding: 45px 20px;
+    }
+
+    .chapter-page .chapter-hero p {
+        font-size: 15px;
+    }
+
+    .chapter-page .chapter-panel-heading {
+        padding: 22px 18px;
+    }
+
+    .chapter-page .chapter-panel-heading h2 {
+        font-size: 22px;
+    }
+
+    .chapter-page .chapter-table thead th,
+    .chapter-page .chapter-table tbody td {
+        padding: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chapter-page .chapter-panel-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .chapter-page .chapter-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+```css
+/* ========================================
+   EVENTS - NARNEIRO
+======================================== */
+
+.event-page {
+    color: #f5f2eb;
+    background: #101820;
+    min-height: 70vh;
+    padding-bottom: 35px;
+}
+
+/* Banner */
+
+.event-page .event-hero {
+    position: relative;
+    width: 100%;
+    min-height: 340px;
+    margin: 25px 0 28px;
+    padding: 50px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 10px;
+
+    background-image: url("/img/map.jpg");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.event-page .event-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(10, 17, 23, 0.90),
+        rgba(10, 17, 23, 0.58)
+    );
+}
+
+.event-page .event-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.event-page .event-eyebrow,
+.event-page .event-section-label {
+    color: #c9a45c;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.event-page .event-hero h1 {
+    margin: 18px 0;
+    color: #f5f2eb;
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.event-page .event-hero p {
+    max-width: 580px;
+    margin: 0 auto 26px;
+    color: #e0e4e6;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* Botão */
+
+.event-page .btn-event-create {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    padding: 12px 22px;
+    background: #c9a45c;
+    color: #101820;
+    border: 1px solid #c9a45c;
+    border-radius: 5px;
+
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+
+    transition: 0.25s ease;
+}
+
+.event-page .btn-event-create span {
+    font-size: 20px;
+}
+
+.event-page .btn-event-create:hover {
+    background: #dfbd78;
+    border-color: #dfbd78;
+    color: #101820;
+    text-decoration: none;
+}
+
+/* Painel */
+
+.event-page .event-panel {
+    background: #141f28;
+    border: 1px solid #35414a;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.event-page .event-panel-heading {
+    padding: 25px;
+    border-bottom: 1px solid #35414a;
+}
+
+.event-page .event-panel-heading h2 {
+    margin: 10px 0;
+    color: #f5f2eb;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.event-page .event-panel-heading p {
+    margin: 0;
+    color: #aab4bb;
+    font-size: 14px;
+}
+
+/* Tabela */
+
+.event-page .event-table {
+    width: 100%;
+    margin: 0;
+    color: #e0e4e6;
+    border-collapse: collapse;
+}
+
+.event-page .event-table thead th {
+    padding: 16px 20px;
+    background: #101820;
+    color: #c9a45c;
+    border: none;
+    border-bottom: 1px solid #35414a;
+
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.event-page .event-table tbody td {
+    padding: 18px 20px;
+    background: transparent;
+    color: #d6dce0;
+    border: none;
+    border-bottom: 1px solid #27343d;
+    vertical-align: middle;
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.event-page .event-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.event-page .event-table tbody tr:hover td {
+    background: rgba(201, 164, 92, 0.05);
+}
+
+.event-page .event-title-cell {
+    min-width: 140px;
+    color: #f5f2eb !important;
+    font-weight: 700;
+}
+
+.event-page .event-description-cell {
+    min-width: 200px;
+    max-width: 450px;
+    overflow-wrap: anywhere;
+}
+
+/* Ordem cronológica */
+
+.event-page .event-order {
+    display: inline-block;
+    padding: 6px 12px;
+
+    background: rgba(201, 164, 92, 0.10);
+    border: 1px solid rgba(201, 164, 92, 0.25);
+    border-radius: 5px;
+
+    color: #c9a45c;
+    font-weight: 700;
+}
+
+/* Sem eventos */
+
+.event-page .event-empty {
+    padding: 45px 20px !important;
+    text-align: center;
+    color: #aab4bb !important;
+}
+
+.event-page .event-empty h3 {
+    color: #f5f2eb;
+    font-size: 20px;
+}
+
+.event-page .event-empty p {
+    margin: 10px 0 0;
+}
+
+/* Telemóveis */
+
+@media (max-width: 600px) {
+    .event-page .event-hero {
+        min-height: 310px;
+        padding: 35px 18px;
+    }
+
+    .event-page .event-hero p {
+        font-size: 14px;
+    }
+
+    .event-page .event-panel-heading {
+        padding: 20px;
+    }
+
+    .event-page .event-table thead th,
+    .event-page .event-table tbody td {
+        padding: 13px;
+    }
+}
+```css
+/* EVENTS - BANNER FULL WIDTH */
+
+.event-page .event-hero {
+    position: relative;
+
+    width: 100vw;
+    max-width: 100vw;
+
+    /* Faz o banner sair dos limites do container */
+    margin-left: calc(50% - 50vw);
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 28px;
+
+    min-height: 360px;
+    padding: 55px 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: 0;
+
+    background-image: url("/img/map.jpg");
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.event-page .event-hero-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        90deg,
+        rgba(10, 17, 23, 0.88),
+        rgba(10, 17, 23, 0.58)
+    );
+}
+
+.event-page .event-hero-content {
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .event-page .event-hero {
+        min-height: 320px;
+        padding: 45px 20px;
+    }
+}
+
+/* EVENTS - BANNER A OCUPAR A LARGURA TOTAL */
+.event-page {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 0 35px;
+    background: #101820;
+}
+
+.event-page .event-hero {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    min-height: 360px;
+    margin: 0 0 28px;
+    padding: 55px 24px;
+    box-sizing: border-box;
+    border-radius: 0;
+
+    background-image: url("/img/map.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.event-page .event-hero-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.event-page .event-hero-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.event-content {
+    padding-top: 0;
+}
+
+@media (max-width: 600px) {
+    .event-page .event-hero {
+        min-height: 320px;
+        padding: 45px 20px;
+    }
+}
+
+
+/* Aproximar a imagem do painel de gerenciamento */
+
+/* Capítulos */
+.chapter-page .chapter-hero {
+    margin-bottom: 15px;
+}
+
+/* Resumo */
+.summary-page .summary-hero {
+    margin-bottom: 15px;
+}

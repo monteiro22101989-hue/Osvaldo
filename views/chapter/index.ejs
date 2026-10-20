@@ -1,5 +1,4 @@
-```ejs
-<%- include("../partials/header") %>
+ <%- include("../partials/header") %>
 <%- include("../partials/navbar") %>
 
 <main class="chapter-page">
@@ -9,18 +8,32 @@
         <div class="chapter-hero-overlay"></div>
 
         <div class="chapter-hero-content">
-            <span class="chapter-eyebrow">O TEU UNIVERSO</span>
+            <span class="chapter-eyebrow">A TUA HISTÓRIA</span>
 
-            <h1>Chapters</h1>
+            <h1>Constrói a tua narrativa</h1>
 
             <p>
-                Organiza os acontecimentos, desenvolve as tuas histórias
-                e constrói o teu universo capítulo a capítulo.
+                Cada capítulo é uma nova etapa da tua história.
+                Organiza os acontecimentos e dá vida ao teu universo.
             </p>
 
             <a href="/chapter/admin/new" class="btn-chapter-create">
                 <span>+</span> Create Chapter
             </a>
+        </div>
+    </section>
+
+    <!-- Introdução, seguindo o estilo da página inicial -->
+    <section class="chapter-intro">
+        <div class="chapter-intro-heading">
+            <span class="chapter-section-label">A TUA JORNADA</span>
+
+            <h2>Uma história, capítulo a capítulo</h2>
+
+            <p>
+                Organiza a tua narrativa num só lugar, acompanha a ordem
+                dos acontecimentos e mantém as personagens ligadas à história.
+            </p>
         </div>
     </section>
 
@@ -75,13 +88,11 @@
                                 <td>
                                     <div class="chapter-character-list">
                                         <% if (chapter.characters && chapter.characters.length > 0) { %>
-
                                             <% chapter.characters.forEach(character => { %>
                                                 <span class="chapter-character-tag">
                                                     <%= character.name %>
                                                 </span>
                                             <% }) %>
-
                                         <% } else { %>
                                             <span class="chapter-no-characters">
                                                 No characters

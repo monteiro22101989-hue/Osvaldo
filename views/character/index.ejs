@@ -1,113 +1,140 @@
-
 <%- include("../partials/header") %>
 <%- include("../partials/navbar") %>
 
-<div class="container character-page">
+<main class="character-page">
 
-    
-<div class="character-hero">
-    <div class="character-hero-overlay"></div>
+    <!-- Banner principal -->
+    <section class="character-hero">
+        <div class="character-hero-overlay"></div>
 
-    <div class="character-hero-content">
-        <span class="character-eyebrow">O TEU UNIVERSO</span>
+        <div class="character-hero-content">
+            <span class="character-eyebrow">O TEU ELENCO</span>
 
-        <h1>Personagens</h1>
+            <h1>Dá vida às tuas personagens</h1>
 
-        <p>
-            Descobre os protagonistas, organiza as suas histórias
-            e dá vida ao teu universo.
-        </p>
+            <p>
+                Descobre os protagonistas, organiza as suas histórias
+                e dá vida ao teu universo.
+            </p>
 
-        <a href="/character/admin/new" class="btn btn-create-character">
-            <span>+</span> Criar personagem
-        </a>
-    </div>
-</div>
+            <a href="/character/admin/new" class="btn btn-create-character">
+                <span>+</span> Criar personagem
+            </a>
+        </div>
+    </section>
 
-    <div class="character-panel">
+    <!-- Introdução no estilo da página inicial -->
+    <section class="character-intro">
+        <div class="character-intro-heading">
+            <span class="character-section-label">O TEU MUNDO</span>
 
-        <div class="character-panel-header">
-            <h2>As tuas personagens</h2>
-            <span class="character-count">
-                <%= characters.length %>
-                <%= characters.length === 1 ? "personagem" : "personagens" %>
-            </span>
+            <h2>Conhece as personagens da tua história</h2>
+
+            <p>
+                Organiza os nomes, apelidos e estados das tuas personagens
+                e mantém todas as informações importantes num só lugar.
+            </p>
+        </div>
+    </section>
+
+    <!-- Área de gestão das personagens -->
+    <div class="character-content">
+
+        <div class="character-panel">
+
+            <div class="character-panel-header">
+                <h2>As tuas personagens</h2>
+
+                <span class="character-count">
+                    <%= characters.length %>
+                    <%= characters.length === 1 ? "personagem" : "personagens" %>
+                </span>
+            </div>
+
+            <% if (characters.length === 0) { %>
+
+                <div class="character-empty">
+                    <h3>Ainda não existem personagens</h3>
+
+                    <p>
+                        Começa a construir o teu universo adicionando
+                        a primeira personagem.
+                    </p>
+
+                    <a href="/character/admin/new" class="btn btn-create-character">
+                        Criar primeira personagem
+                    </a>
+                </div>
+
+            <% } else { %>
+
+                <div class="table-responsive">
+                    <table class="table character-table">
+
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Apelido</th>
+                                <th>Estado</th>
+                                <th class="character-actions-heading">Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% characters.forEach(character => { %>
+                                <tr>
+                                    <td class="character-name">
+                                        <%= character.name %>
+                                    </td>
+
+                                    <td>
+                                        <%= character.nickname || "—" %>
+                                    </td>
+
+                                    <td>
+                                        <span class="character-state">
+                                            <%= character.state || "Não definido" %>
+                                        </span>
+                                    </td>
+
+                                    <td class="character-actions">
+                                        <a
+                                            class="btn btn-edit-character"
+                                            href="/character/admin/update/<%= character.id %>">
+                                            Editar
+                                        </a>
+
+                                        <form
+                                            action="/character/delete"
+                                            method="post"
+                                            onsubmit="return confirmDelete(this);">
+
+                                            <input
+                                                type="hidden"
+                                                name="id"
+                                                value="<%= character.id %>">
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-delete-character">
+                                                Excluir
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            <% } %>
+
         </div>
 
-        <% if (characters.length === 0) { %>
-
-            <div class="character-empty">
-                <h3>Ainda não existem personagens</h3>
-                <p>Começa a construir o teu universo adicionando a primeira personagem.</p>
-                <a href="/character/admin/new" class="btn btn-create-character">
-                    Criar primeira personagem
-                </a>
-            </div>
-
-        <% } else { %>
-
-            <div class="table-responsive">
-                <table class="table character-table">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Apelido</th>
-                            <th>Estado</th>
-                            <th class="character-actions-heading">Ações</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <% characters.forEach(character => { %>
-                            <tr>
-                                <td class="character-name">
-                                    <%= character.name %>
-                                </td>
-
-                                <td>
-                                    <%= character.nickname || "—" %>
-                                </td>
-
-                                <td>
-                                    <span class="character-state">
-                                        <%= character.state || "Não definido" %>
-                                    </span>
-                                </td>
-
-                                <td class="character-actions">
-                                    <a
-                                        class="btn btn-edit-character"
-                                        href="/character/admin/update/<%= character.id %>">
-                                        Editar
-                                    </a>
-
-                                    <form
-                                        action="/character/delete"
-                                        method="post"
-                                        onsubmit="return confirmDelete(this);">
-
-                                        <input
-                                            type="hidden"
-                                            name="id"
-                                            value="<%= character.id %>">
-
-                                        <button type="submit"
-                                            class="btn btn-delete-character">
-                                            Excluir
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <% }) %>
-                    </tbody>
-                </table>
-            </div>
-
-        <% } %>
-
     </div>
 
-</div>
+</main>
 
 <script>
     function confirmDelete(form) {

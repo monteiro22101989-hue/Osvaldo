@@ -1,9 +1,125 @@
-<%-include('../partials/header')%>
-<body>
-    <div class="conainter">
-        <h1>summary here</h1>
+
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<main class="summary-page">
+
+  <!-- Banner principal -->
+  <section class="summary-hero">
+    <div class="summary-hero-overlay"></div>
+
+    <div class="summary-hero-content">
+      <span class="summary-eyebrow">A TUA HISTÓRIA</span>
+
+      <h1>Organiza o teu universo</h1>
+
+      <p>
+        Reúne os resumos da tua narrativa, organiza os acontecimentos
+        e mantém os detalhes importantes da tua história sempre acessíveis.
+      </p>
+
+      <a href="/summary/admin/new" class="btn-summary-create">
+        <span>+</span> Criar resumo
+      </a>
     </div>
-</body>
+  </section>
 
+  <!-- Introdução -->
+  <section class="summary-intro">
+    <div class="summary-intro-heading">
+      <span class="summary-section-label">A TUA NARRATIVA</span>
 
-<%-include("../partials/footer")%>
+      <h2>Os detalhes que dão vida à tua história</h2>
+
+      <p>
+        Organiza os resumos por tipo e ordem para manter todas as informações
+        importantes do teu universo num só lugar.
+      </p>
+    </div>
+  </section>
+
+  <!-- Área de gestão -->
+  <div class="container summary-content">
+
+    <section class="summary-panel">
+
+      <div class="summary-panel-heading">
+        <div>
+          <span class="summary-section-label">GESTÃO DO UNIVERSO</span>
+          <h2>Summary Library</h2>
+          <p>Consulta e gere os resumos da tua história.</p>
+        </div>
+
+        <span class="summary-count">
+          <%= summary.length %>
+          <%= summary.length === 1 ? "resumo" : "resumos" %>
+        </span>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table summary-table">
+
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Content</th>
+              <th>Type</th>
+              <th>Order</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% summary.forEach(item => { %>
+              <tr>
+                <td class="summary-title-cell">
+                  <%= item.title %>
+                </td>
+
+                <td class="summary-content-cell">
+                  <%= item.content %>
+                </td>
+
+                <td>
+                  <span class="summary-type">
+                    <%= item.type || "Não definido" %>
+                  </span>
+                </td>
+
+                <td>
+                  <span class="summary-order">
+                    <%= item.order %>
+                  </span>
+                </td>
+              </tr>
+            <% }) %>
+
+            <% if (summary.length === 0) { %>
+              <tr>
+                <td colspan="4" class="summary-empty">
+                  <div class="summary-empty-icon">✦</div>
+
+                  <h3>Ainda não existem resumos</h3>
+
+                  <p>
+                    Começa a organizar a tua narrativa criando o teu primeiro resumo.
+                  </p>
+
+                  <a href="/summary/admin/new" class="btn-summary-create">
+                    + Criar primeiro resumo
+                  </a>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+
+        </table>
+      </div>
+
+    </section>
+
+  </div>
+
+</main>
+
+<%- include("../partials/footer") %>
+```
