@@ -4,7 +4,7 @@ const Chapter = require("./Chapter");
 const Character = require("../characters/Character")
 
 
-
+//index
 router.get("/chapter/index", (req,res) =>{
     Chapter.findAll({
         include: [Character],
@@ -123,6 +123,19 @@ router.post("/chapter/delete", (req,res) =>{
     }).catch(error =>{
         console.log(error);
         res.status(500).send("error to delet chapter")
+    })
+})
+
+router.get("/chapter/read/:id",(req,res) =>{
+    var id = req.params.id;
+    Chapter.findByPk(id)
+    .then(chapters =>{
+        res.render("chapter/read",{
+            chapters: chapters
+        })
+    }).catch((error)=>{
+        console.log("error",error);
+        res.redirect("/chapter/index")
     })
 })
 

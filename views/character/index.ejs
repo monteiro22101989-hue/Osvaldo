@@ -82,7 +82,8 @@
 
                         <tbody>
                             <% characters.forEach(character => { %>
-                                <tr>
+                               
+                                <tr onclick="window.location='/character/read/<%-character.id%>';" style="cursor: pointer;" >
                                     <td class="character-name">
                                         <%= character.name %>
                                     </td>
@@ -122,6 +123,7 @@
                                         </form>
                                     </td>
                                 </tr>
+                                
                             <% }) %>
                         </tbody>
 

@@ -70,7 +70,7 @@
 
                     <tbody>
                         <% chapters.forEach(chapter => { %>
-                            <tr>
+                            <tr onclick="window.location='/chapter/read/<%-chapter.id%>';" style="cursor: pointer;">
                                 <td class="chapter-title-cell">
                                     <%= chapter.title %>
                                 </td>

@@ -1,0 +1,100 @@
+<%-include("../partials/header")%>
+<%-include("../partials/navbar")%>
+
+ 
+    <style>
+        /* Estilo opcional para deixar a leitura do conteúdo mais confortável */
+        .chapter-content {
+            white-space: pre-line; /* Mantém as quebras de linha do seu texto */
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+    </style>
+
+<body class="bg-light">
+
+    <div class="container my-5">
+        <!-- Botão para voltar à listagem -->
+        <a href="/character/index" class="btn btn-outline-secondary mb-4">&larr; Voltar para a lista</a>
+
+        <!-- Card do Capítulo -->
+        <div class="card shadow-sm">
+            <!-- Cabeçalho do Card com name e ID -->
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                <h2 class="h4 mb-0"><%= characters.name %></h2>
+                <span class="badge bg-secondary">ID: #<%= characters.id %></span>
+            </div>
+            
+            
+            
+            <!-- Corpo do Card com o description da Estória -->
+            <div class="card-body p-4">
+                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
+                <div class="chapter-content text-muted">
+                    <%-characters.description %>
+                </div>
+            </div>
+            
+            <div class="card-body p-4">
+                <labe>Nick name</labe>
+                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
+                <div class="chapter-content text-muted">
+                    <%-characters.nickname %>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
+                <div class="chapter-content text-muted">
+                   <%-characters.appearance %>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
+                <div class="chapter-content text-muted">
+                   <%-characters.personality %>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
+                <div class="chapter-content text-muted">
+                   <%-characters.story %>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
+                <div class="chapter-content text-muted">
+                   <%-characters.gols %>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
+                <div class="chapter-content text-muted">
+                   <%-characters.state %>
+                </div>
+            </div>
+            <div class="card-body p-4">
+                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
+                <div class="chapter-content text-muted">
+                   <%-characters.state %>
+                </div>
+            </div>
+
+
+             <div class="card-body p-4">
+                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
+                <div class="chapter-content text-muted">
+                    <%-characters.state_on_story %>
+                </div>
+            </div>
+
+            <!-- Rodapé do Card (Opcional - para navegação) -->
+            <div class="card-footer bg-white d-flex justify-content-between">
+                <small class="text-muted">Boa leitura!</small>
+            </div>
+        </div>
+    </div>
+
+   
+</body>
+
+<%-include("../partials/footer")%>

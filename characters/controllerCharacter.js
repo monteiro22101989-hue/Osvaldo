@@ -77,5 +77,21 @@ router.post("/character/delete", (req,res) =>{
     
 })
 
+router.get("/character/read/:id",(req,res) =>{
+    var id = req.params.id;
+    if(id){
+        Character.findByPk(id).then(characters =>{
+            res.render("character/read",{
+                characters: characters
+            })
+        }).catch((error)=>{
+            console.log("error to find the character");
+            res.redirect("/character/index")
+        })
+    }else{
+        res.redirect("/character/index")
+    }
+
+})
 
 module.exports = router;

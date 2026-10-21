@@ -18,7 +18,7 @@
                 e acompanha tudo o que acontece no teu universo.
             </p>
 
-            <a href="#" class="btn-event-create">
+            <a href="/event/admin/new" class="btn-event-create">
                 <span>+</span> Create Event
             </a>
         </div>
@@ -74,7 +74,7 @@
 
                     <tbody>
                         <% events.forEach(event => { %>
-                            <tr>
+                            <tr onclick="window.location='/';" style="cursor: pointer;">
                                 <td class="event-title-cell">
                                     <%= event.title %>
                                 </td>
