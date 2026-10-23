@@ -72,11 +72,18 @@ router.get("/chapter/admin/upDate/:id",(req,res) =>{
        return res.redirect("/chapter/index");
     }
 
-    Chapter.findByPk(id).then(chapter =>{
+    Chapter.findByPk(id, {
+        include: [Character] // busca os personagens ja associados ao capitulo
+    }).then(chapter =>{
+        console.log(chapter.Characters);
         if(chapter){
-            res.render("chapter/admin/update",{
-                chapter: chapter
+            Character.findAll().then(character =>{
+                res.render("chapter/admin/update",{
+                chapter: chapter,
+                characters: character
+                })
             })
+            
         }else{
             res.redirect("/chapter/index");
         }
@@ -90,9 +97,10 @@ router.post("/chapter/save", (req,res) =>{
    var title = req.body.title;
    var content = req.body.content;
    var order = req.body.ordem;
+   var characters = req.body["characters[]"]
 
-   console.log(id, title, content, order);
-   Capitulo.update({    
+   console.log("Chapter dates:",id, title, content, order);
+   Chapter.update({    
         title: title,
         content: content,
         order: order
@@ -100,10 +108,20 @@ router.post("/chapter/save", (req,res) =>{
         where: {
             id:id
         }
+   }).then(()=>{
+        return Chapter.findByPk(id);
+   })
+   .then(chapter =>{
+        if(chapter){
+            return chapter.setCharacters(characters || []);// se tiver algum caracter ou se tiver vazio []. assim ele vai tirar os personagems que nao colocarmos na edicao
+            
+        }
+        
    }).then(() =>{
-        res.redirect("/chapter/index");
-   }).catch(error =>{
-        res.redirect("/chapter/index");
+        res.redirect(`/chapter/read/${id}`);
+   })
+   .catch(error =>{
+        res.redirect(`/chapter/read/${id}`);
    })
 })
 

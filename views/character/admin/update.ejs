@@ -1,0 +1,69 @@
+<%-include("../../partials/header")%>
+<%-include("../../partials/navbar")%>
+<body>
+    
+    <div class="container">
+        <div class="card-header my-3">
+            <h1>Update Character</h1>
+        </div>
+        <div class="card-body">
+            <form action="/character/save" method="POST" >
+               <div class="form-group">
+                    <label for="name">name</label>
+                    <input type="text" class="form-control" value="<%-characters.name%>" id="name" name="name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="nickname">Nickname</label>
+                    <input type="text" class="form-control" value="<%-characters.nickname%>" id="nickname" name="nickname">
+                </div>
+                <div class="form-group">
+                    <label for="stateStory">state on story</label>
+                    <input type="text" class="form-control" id="stateStory" value="<%-characters.state_on_story%>" name="stateStory">
+                </div>
+                <div class="form-group">
+                    <label for="content">description</label>
+                    <textarea class="form-control" id="description" name="description" ><%-characters.description%></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="content">Appearence</label>
+                    <textarea class="form-control" id="appearence" name="appearance"><%-characters.appearance%></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="content">Personality</label>
+                    <textarea class="form-control" id="personality" name="personality"><%-characters.personality%></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="content">story</label>
+                    <textarea class="form-control" id="story" name="story"><%-characters.story%></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="content">goals</label>
+                    <textarea class="form-control" id="goals" name="goals"><%-characters.gols%></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="content">state</label>
+                    <textarea class="form-control" id="state" name="state"><%-characters.state%></textarea>
+                </div>
+               
+                <input type="hidden" name="id" value="<%-characters.id%>" >
+                <button type="submit" class="btn btn-primary">Save Chapter</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+
+<%-include("../../partials/footer")%>
+<script src="/tinymce/tinymce.min.js"></script>
+<script>
+    tinymce.init({
+        language: 'pt_BR', //<---fizemos o download  da lingua e colocamos na pasta e depois mudamos aqui-->
+        selector: "#description, #appearence, #personality, #story, #goals, #state",
+        license_key: 'gpl', // <--- ADICIONE ESTA LINHA PARA REMOVER O AVISO da chave
+        plugins: [
+            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
+        ]
+
+    })
+</script>

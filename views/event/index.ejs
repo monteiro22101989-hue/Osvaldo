@@ -69,12 +69,13 @@
                             <th>Title</th>
                             <th>Description</th>
                             <th>Chronological Order</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <% events.forEach(event => { %>
-                            <tr onclick="window.location='/';" style="cursor: pointer;">
+                            <tr onclick="window.location='/event/read/<%-event.id%>';" style="cursor: pointer;">
                                 <td class="event-title-cell">
                                     <%= event.title %>
                                 </td>
@@ -88,6 +89,18 @@
                                         <%= event.chronologicalOrder %>
                                     </span>
                                 </td>
+                                <td class="character-actions d-flex align-items-center gap-2">
+                                    <a
+                                        class="btn btn-warning mr-2"
+                                        href="/event/admin/edit/<%= event.id %>">
+                                        Editar
+                                    </a>
+                                    <form method="post" action="/event/admin/delete" onsubmit="return confirmDelete(this)">
+                                        <input type="hidden" name="id" value="<=%event.id%>">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+                    
+                                 </td>
                             </tr>
                         <% }) %>
 

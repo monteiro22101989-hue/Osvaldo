@@ -1,0 +1,50 @@
+
+<%- include("../../partials/header") %>
+<%- include("../../partials/navbar") %>
+
+
+<div class="container">
+    
+    <hr>
+    <div class="card-header">
+        <h1>create resumo for your history</h1>
+    </div>
+    <div class="card-body">
+        <form action="/event/save" method="post">
+            <div class="form-group">
+                <labe>Title</labe>
+                <input class="form-control" type="text" id="title" value="<%-event.title%>" name="title">
+            </div>
+            <div class="form-group">
+                <label>descritipn</label>
+                <input class="form-control" type="text" id="description" name="description" value="<%-event.description%>">
+            </div>
+            <div class="form-group">
+                <label>chronological</label>
+                <input class="form-control" type="text" id="time" value="<%-event.chronologicalOrder%>" name="time">
+            </div>
+            <div>
+                <label>importacne</label>
+                <input class="form-control" type="text" id="importance" name="importance" value="<%-event.importance%>" >
+            </div>
+            <div>
+                <label>Local</label>
+                <input class="form-control" type="text" id="local" name="local" value="<%-event.local%>" >
+            </div>
+            <div>
+                <label>observation</label>
+                <input class="form-control" type="text" id="observation" name="observation" value="<%-event.observation%>" >
+            </div>
+            <input type="hidden" name="id" value="<%-event.id%>">
+            <button type="submit" class="btn btn-primary my-2">Send</button>
+        </form>
+    </div>
+
+
+
+
+</div>
+
+
+
+<%- include("../../partials/footer") %>

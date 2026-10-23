@@ -70,7 +70,7 @@
 
                     <tbody>
                         <% chapters.forEach(chapter => { %>
-                            <tr onclick="window.location='/chapter/read/<%-chapter.id%>';" style="cursor: pointer;">
+                            <tr onclick="window.location='/chapter/read/<%-chapter.id%>';" style="cursor: pointer;"><!--direciona pra esse lugar quando clicar e qualquer lugar dentro-->
                                 <td class="chapter-title-cell">
                                     <%= chapter.title %>
                                 </td>
@@ -101,7 +101,7 @@
                                     </div>
                                 </td>
 
-                                <td class="chapter-actions">
+                                <td class="chapter-actions" onclick="event.stopPropagation();" >
                                     <a
                                         class="btn-chapter-edit"
                                         href="/chapter/admin/upDate/<%= chapter.id %>">

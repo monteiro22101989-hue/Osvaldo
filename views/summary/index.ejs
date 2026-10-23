@@ -65,30 +65,43 @@
               <th>Content</th>
               <th>Type</th>
               <th>Order</th>
+              <th>Actions</th>
             </tr>
           </thead>
 
           <tbody>
-            <% summary.forEach(item => { %>
-              <tr>
+            <% summary.forEach(summary => { %>
+              <tr onclick="window.location='/summary/read/<%-summary.id%>';" style="cursor: pointer;">
                 <td class="summary-title-cell">
-                  <%= item.title %>
+                  <%= summary.title %>
                 </td>
 
                 <td class="summary-content-cell">
-                  <%= item.content %>
+                  <%= summary.content %>
                 </td>
 
                 <td>
                   <span class="summary-type">
-                    <%= item.type || "Não definido" %>
+                    <%= summary.type || "Não definido" %>
                   </span>
                 </td>
 
                 <td>
                   <span class="summary-order">
-                    <%= item.order %>
+                    <%= summary.order %>
                   </span>
+                </td>
+                <td class="character-actions d-flex align-items-center gap-2" onclick="event.stopPropagation();">
+                    <a
+                        class="btn btn-edit-character "
+                        href="/summary/admin/edit/<%= summary.id %>">
+                        Editar
+                   </a>
+                  <form method="post" action="/summary/delete" onsubmit="return confirmDelete(this)">
+                      <input type="hidden" name="id" value="<%-summary.id%>">
+                      <button class="btn btn-danger" type="submit">Delet</button>
+                    </form>
+                  
                 </td>
               </tr>
             <% }) %>
@@ -122,4 +135,9 @@
 </main>
 
 <%- include("../partials/footer") %>
-```
+<script>
+  function confirmDelete(form){
+    return confirm("are you sure about delete it?")
+  }
+
+</script>
