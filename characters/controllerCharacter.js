@@ -1,6 +1,22 @@
 const express = require('express');
 const router = express.Router();
 const Character = require("./Character");
+const path = require("path");
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, "../public/uploads"));
+    },
+    filename: (req, file, cb) => {
+        const extensao = path.extname(file.originalname).toLowerCase();
+        const nomeArquivo = Date.now() + extensao;
+        cb(null, nomeArquivo);
+    }
+});
+
+const upload = multer({ storage: storage });
+
 
 router.get("/character/index", (req,res) =>{
     Character.findAll({
@@ -19,7 +35,7 @@ router.get("/character/admin/new", (req,res) =>{
     res.render("character/admin/new");
 })
 
-router.post("/character/admin/save", (req,res)=>{
+router.post("/character/admin/save", upload.single("image"), (req,res)=>{
    var name = req.body.name;
     var nickname = req.body.nickname;
     var description = req.body.description;
@@ -29,7 +45,11 @@ router.post("/character/admin/save", (req,res)=>{
     var gols = req.body.goals;
     var state = req.body.state;
     var state_on_story = req.body.stateStory;
+    var image = null;
     
+    if(req.file){
+        image = "/uploads/" + req.file.filename;
+    }
 
     console.log(name, nickname, description, appearance, personality, story, gols, state, state_on_story);
     if(name ){
@@ -42,7 +62,8 @@ router.post("/character/admin/save", (req,res)=>{
             story: story,
             gols: gols,
             state: state,
-            state_on_story: state_on_story
+            state_on_story: state_on_story,
+            image: image
            
         }).then(()=>{
             res.redirect("/character/index");

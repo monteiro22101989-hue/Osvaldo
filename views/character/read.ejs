@@ -1,100 +1,98 @@
-<%-include("../partials/header")%>
-<%-include("../partials/navbar")%>
+```ejs
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
 
- 
-    <style>
-        /* Estilo opcional para deixar a leitura do conteúdo mais confortável */
-        .chapter-content {
-            white-space: pre-line; /* Mantém as quebras de linha do seu texto */
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-    </style>
+<div class="character-read-page">
+    <div class="character-read-container">
 
-<body class="bg-light">
+        <a href="/character/index" class="character-read-back">
+            &larr; Voltar para os personagens
+        </a>
 
-    <div class="container my-5">
-        <!-- Botão para voltar à listagem -->
-        <a href="/character/index" class="btn btn-outline-secondary mb-4">&larr; Voltar para a lista</a>
+        <article class="character-scroll">
 
-        <!-- Card do Capítulo -->
-        <div class="card shadow-sm">
-            <!-- Cabeçalho do Card com name e ID -->
-            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-                <h2 class="h4 mb-0"><%= characters.name %></h2>
-                <span class="badge bg-secondary">ID: #<%= characters.id %></span>
-            </div>
-            
-            
-            
-            <!-- Corpo do Card com o description da Estória -->
-            <div class="card-body p-4">
-                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
-                <div class="chapter-content text-muted">
-                    <%-characters.description %>
-                </div>
-            </div>
-            
-            <div class="card-body p-4">
-                <labe>Nick name</labe>
-                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
-                <div class="chapter-content text-muted">
-                    <%-characters.nickname %>
-                </div>
-            </div>
-            <div class="card-body p-4">
-                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
-                <div class="chapter-content text-muted">
-                   <%-characters.appearance %>
-                </div>
-            </div>
-            <div class="card-body p-4">
-                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
-                <div class="chapter-content text-muted">
-                   <%-characters.personality %>
-                </div>
-            </div>
-            <div class="card-body p-4">
-                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
-                <div class="chapter-content text-muted">
-                   <%-characters.story %>
-                </div>
-            </div>
-            <div class="card-body p-4">
-                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
-                <div class="chapter-content text-muted">
-                   <%-characters.gols %>
-                </div>
-            </div>
-            <div class="card-body p-4">
-                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
-                <div class="chapter-content text-muted">
-                   <%-characters.state %>
-                </div>
-            </div>
-            <div class="card-body p-4">
-                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
-                <div class="chapter-content text-muted">
-                   <%-characters.state %>
-                </div>
+            <div class="character-scroll-ornament">
+                
             </div>
 
+            <header class="character-read-header">
+                <span class="character-read-label">
+                    The Chronicles of Narneiro
+                </span>
 
-             <div class="card-body p-4">
-                <!-- Supondo que a coluna no banco de dados se chame 'content' ou 'conteudo' -->
-                <div class="chapter-content text-muted">
-                    <%-characters.state_on_story %>
+                <h1 class="character-read-title">
+                    <%= characters.name %>
+                </h1>
+
+                <span class="character-read-id">
+                    Character #<%= characters.id %>
+                </span>
+
+                <% if (characters.nickname) { %>
+                    <p class="character-read-nickname">
+                        "<%= characters.nickname %>"
+                    </p>
+                <% } %>
+            </header>
+             <% if (characters.image) { %>
+                <div class="character-read-image">
+                    <img
+                        src="<%= characters.image %>"
+                        alt="Imagem de <%= characters.name %>"
+                    >
                 </div>
-            </div>
+            <% } %>
+            <section class="character-read-section">
+                <h2>Appearance</h2>
+                <div class="character-read-content">
+                    <%- characters.appearance || "No information available." %>
+                </div>
+            </section>
 
-            <!-- Rodapé do Card (Opcional - para navegação) -->
-            <div class="card-footer bg-white d-flex justify-content-between">
-                <small class="text-muted">Boa leitura!</small>
-            </div>
-        </div>
+            <section class="character-read-section">
+                <h2>Personality</h2>
+                <div class="character-read-content">
+                    <%- characters.personality || "No information available." %>
+                </div>
+            </section>
+
+            <section class="character-read-section">
+                <h2>Story</h2>
+                <div class="character-read-content">
+                    <%- characters.story || "No information available." %>
+                </div>
+            </section>
+
+            <section class="character-read-section">
+                <h2>Goals</h2>
+                <div class="character-read-content">
+                    <%- characters.goals || "No information available." %>
+                </div>
+            </section>
+
+            <section class="character-read-section">
+                <h2>Current State</h2>
+                <div class="character-read-content">
+                    <%- characters.state || "No information available." %>
+                </div>
+            </section>
+
+            <section class="character-read-section">
+                <h2>State in the Story</h2>
+                <div class="character-read-content">
+                    <%- characters.state_on_story || "No information available." %>
+                </div>
+            </section>
+
+            <footer class="character-read-footer">
+                End of character record
+                <span>❦</span>
+            </footer>
+
+        </article>
+
     </div>
+</div>
 
-   
-</body>
-
-<%-include("../partials/footer")%>
+<%- include("../partials/footer") %>
+```

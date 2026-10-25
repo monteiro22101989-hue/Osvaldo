@@ -1,69 +1,223 @@
-<%-include("../../partials/header")%>
+<%- include("../../partials/header") %>
 <%-include("../../partials/navbar")%>
 <body>
-    
-    <div class="container">
-        <div class="card-header my-3">
-            <h1>creat a new chapter</h1>
-        </div>
-        <div class="card-body">
-            <form action="/character/admin/save" method="POST" >
-               <div class="form-group">
-                    <label for="name">name</label>
-                    <input type="text" class="form-control" id="name" name="name">
-                </div>
-                
-                <div class="form-group">
-                    <label for="nickname">Nickname</label>
-                    <input type="text" class="form-control" id="nickname" name="nickname">
-                </div>
-                <div class="form-group">
-                    <label for="stateStory">state on story</label>
-                    <input type="text" class="form-control" id="stateStory" name="stateStory">
-                </div>
-                <div class="form-group">
-                    <label for="content">description</label>
-                    <textarea class="form-control" id="description" name="description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="content">Appearence</label>
-                    <textarea class="form-control" id="appearence" name="appearance"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="content">Personality</label>
-                    <textarea class="form-control" id="personality" name="personality"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="content">story</label>
-                    <textarea class="form-control" id="story" name="story"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="content">goals</label>
-                    <textarea class="form-control" id="goals" name="goals"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="content">state</label>
-                    <textarea class="form-control" id="state" name="state"></textarea>
-                </div>
-               
 
-                <button type="submit" class="btn btn-primary">Save Chapter</button>
-            </form>
+    <div class="chapter-edit-page">
+
+        <div class="chapter-edit-container">
+
+            <!-- Page heading -->
+            <div class="chapter-edit-header">
+                <span class="chapter-edit-eyebrow">
+                    CHARACTER MANAGEMENT
+                </span>
+
+                <h1>Create a New Character</h1>
+
+                <p>
+                    Add a new character and define their details, personality and story.
+                </p>
+            </div>
+
+            <!-- New character form -->
+            <div class="chapter-edit-panel">
+
+                <form action="/character/admin/save" method="POST" enctype="multipart/form-data">
+
+                    <!-- Character name and nickname -->
+                    <div class="chapter-edit-grid">
+
+                        <div class="chapter-edit-group">
+                            <label for="name">
+                                Name
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                name="name"
+                                placeholder="Enter the character's name"
+                                required
+                            >
+                        </div>
+
+                        <div class="chapter-edit-group">
+                            <label for="nickname">
+                                Nickname
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nickname"
+                                name="nickname"
+                                placeholder="Enter the character's nickname"
+                            >
+                        </div>
+
+                    </div>
+                    <!-- Character image -->
+                    <div class="chapter-edit-group">
+                        <label for="image">
+                            Character Image
+                        </label>
+
+                        <input
+                            type="file"
+                            class="form-control"
+                            id="image"
+                            name="image"
+                            accept="image/jpeg,image/png,image/webp,image/gif"
+                        >
+
+                        <small>
+                            Select an image in JPG, PNG, WebP or GIF format.
+                        </small>
+                    </div>
+
+                    <!-- Character state on story -->
+                    <div class="chapter-edit-group">
+                        <label for="stateStory">
+                            State on Story
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="stateStory"
+                            name="stateStory"
+                            placeholder="Enter the character's state in the story"
+                        >
+                    </div>
+
+                    <!-- Description -->
+                    <div class="chapter-edit-group chapter-edit-content">
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="description"
+                            name="description"
+                        ></textarea>
+                    </div>
+
+                    <!-- Appearance -->
+                    <div class="chapter-edit-group chapter-edit-content">
+                        <label for="appearance">
+                            Appearance
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="appearance"
+                            name="appearance"
+                        ></textarea>
+                    </div>
+
+                    <!-- Personality -->
+                    <div class="chapter-edit-group chapter-edit-content">
+                        <label for="personality">
+                            Personality
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="personality"
+                            name="personality"
+                        ></textarea>
+                    </div>
+
+                    <!-- Story -->
+                    <div class="chapter-edit-group chapter-edit-content">
+                        <label for="story">
+                            Story
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="story"
+                            name="story"
+                        ></textarea>
+                    </div>
+
+                    <!-- Goals -->
+                    <div class="chapter-edit-group chapter-edit-content">
+                        <label for="goals">
+                            Goals
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="goals"
+                            name="goals"
+                        ></textarea>
+                    </div>
+
+                    <!-- State -->
+                    <div class="chapter-edit-group chapter-edit-content">
+                        <label for="state">
+                            State
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="state"
+                            name="state"
+                        ></textarea>
+                    </div>
+
+                    <!-- Form actions -->
+                    <div class="chapter-edit-actions">
+
+                        <a
+                            href="/character/index"
+                            class="btn-chapter-cancel"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="btn-chapter-save"
+                        >
+                            Create Character
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
         </div>
+
     </div>
+
 </body>
 
+<%- include("../../partials/footer") %>
 
-<%-include("../../partials/footer")%>
 <script src="/tinymce/tinymce.min.js"></script>
+
 <script>
     tinymce.init({
-        language: 'pt_BR', //<---fizemos o download  da lingua e colocamos na pasta e depois mudamos aqui-->
-        selector: "#description, #appearence, #personality, #story, #goals, #state",
-        license_key: 'gpl', // <--- ADICIONE ESTA LINHA PARA REMOVER O AVISO da chave
+        language: "pt_BR",
+        selector: "#description, #appearance, #personality, #story, #goals, #state",
+        license_key: "gpl",
+        height: 300,
+        menubar: true,
         plugins: [
-            'advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons'
-        ]
-
-    })
+            "advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons"
+        ],
+        toolbar:
+            "undo redo | blocks | bold italic underline | " +
+            "alignleft aligncenter alignright | " +
+            "bullist numlist | link image | table | fullscreen",
+        content_style:
+            "body { font-family: Arial, Helvetica, sans-serif; " +
+            "font-size: 14px; line-height: 1.7; }"
+    });
 </script>

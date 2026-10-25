@@ -72,25 +72,25 @@
                         <% chapters.forEach(chapter => { %>
                             <tr onclick="window.location='/chapter/read/<%-chapter.id%>';" style="cursor: pointer;"><!--direciona pra esse lugar quando clicar e qualquer lugar dentro-->
                                 <td class="chapter-title-cell">
-                                    <%= chapter.title %>
+                                    <%-chapter.title %>
                                 </td>
 
                                 <td class="chapter-content-cell">
-                                    <%= chapter.content %>
+                                    <%-chapter.title %>
                                 </td>
 
                                 <td>
                                     <span class="chapter-order">
-                                        <%= chapter.order %>
+                                        <%-chapter.order %>
                                     </span>
                                 </td>
 
                                 <td>
-                                    <div class="chapter-character-list">
+                                    <div class="chapter-character-list ">
                                         <% if (chapter.characters && chapter.characters.length > 0) { %>
                                             <% chapter.characters.forEach(character => { %>
-                                                <span class="chapter-character-tag">
-                                                    <%= character.name %>
+                                                <span class="chapter-character-tag ">
+                                                   <a class="link-cor-character" href="/character/read/<%-character.id%>" ><%- character.name %></a> 
                                                 </span>
                                             <% }) %>
                                         <% } else { %>

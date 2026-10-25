@@ -1,50 +1,186 @@
-
 <%- include("../../partials/header") %>
-<%- include("../../partials/navbar") %>
+<%-include("../../partials/navbar")%>
+<body>
 
+    <div class="chapter-edit-page">
 
-<div class="container">
-    
-    <hr>
-    <div class="card-header">
-        <h1>create resumo for your history</h1>
+        <div class="chapter-edit-container">
+
+            <!-- Page heading -->
+            <div class="chapter-edit-header">
+                <span class="chapter-edit-eyebrow">
+                    EVENT MANAGEMENT
+                </span>
+
+                <h1>Edit Event</h1>
+
+                <p>
+                    Update the event details and information.
+                </p>
+            </div>
+
+            <!-- Edit event form -->
+            <div class="chapter-edit-panel">
+
+                <form action="/event/save" method="POST">
+
+                    <!-- Title and chronological order -->
+                    <div class="chapter-edit-grid">
+
+                        <div class="chapter-edit-group">
+                            <label for="title">
+                                Title
+                            </label>
+
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="title"
+                                name="title"
+                                value="<%= event.title %>"
+                                placeholder="Enter the event title"
+                                required
+                            >
+                        </div>
+
+                        <div class="chapter-edit-group">
+                            <label for="time">
+                                Chronological Order
+                            </label>
+
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="time"
+                                name="time"
+                                value="<%= event.chronologicalOrder %>"
+                                placeholder="Enter the chronological order"
+                            >
+                        </div>
+
+                    </div>
+
+                    <!-- Importance and location -->
+                    <div class="chapter-edit-grid">
+
+                        <div class="chapter-edit-group">
+                            <label for="importance">
+                                Importance
+                            </label>
+
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="importance"
+                                name="importance"
+                                value="<%= event.importance %>"
+                                placeholder="Enter the event's importance"
+                            >
+                        </div>
+
+                        <div class="chapter-edit-group">
+                            <label for="local">
+                                Location
+                            </label>
+
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="local"
+                                name="local"
+                                value="<%= event.local %>"
+                                placeholder="Enter the event location"
+                            >
+                        </div>
+
+                    </div>
+
+                    <!-- Description -->
+                    <div class="chapter-edit-group chapter-edit-content">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="description"
+                            name="description"
+                        ><%= event.description %></textarea>
+
+                    </div>
+
+                    <!-- Observation -->
+                    <div class="chapter-edit-group chapter-edit-content">
+
+                        <label for="observation">
+                            Observation
+                        </label>
+
+                        <textarea
+                            class="form-control"
+                            id="observation"
+                            name="observation"
+                        ><%= event.observation %></textarea>
+
+                    </div>
+
+                    <!-- Event ID -->
+                    <input
+                        type="hidden"
+                        name="id"
+                        value="<%= event.id %>"
+                    >
+
+                    <!-- Form actions -->
+                    <div class="chapter-edit-actions">
+
+                        <a
+                            href="/event/index"
+                            class="btn-chapter-cancel"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="btn-chapter-save"
+                        >
+                            Save Changes
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
     </div>
-    <div class="card-body">
-        <form action="/event/save" method="post">
-            <div class="form-group">
-                <labe>Title</labe>
-                <input class="form-control" type="text" id="title" value="<%-event.title%>" name="title">
-            </div>
-            <div class="form-group">
-                <label>descritipn</label>
-                <input class="form-control" type="text" id="description" name="description" value="<%-event.description%>">
-            </div>
-            <div class="form-group">
-                <label>chronological</label>
-                <input class="form-control" type="text" id="time" value="<%-event.chronologicalOrder%>" name="time">
-            </div>
-            <div>
-                <label>importacne</label>
-                <input class="form-control" type="text" id="importance" name="importance" value="<%-event.importance%>" >
-            </div>
-            <div>
-                <label>Local</label>
-                <input class="form-control" type="text" id="local" name="local" value="<%-event.local%>" >
-            </div>
-            <div>
-                <label>observation</label>
-                <input class="form-control" type="text" id="observation" name="observation" value="<%-event.observation%>" >
-            </div>
-            <input type="hidden" name="id" value="<%-event.id%>">
-            <button type="submit" class="btn btn-primary my-2">Send</button>
-        </form>
-    </div>
 
-
-
-
-</div>
-
-
+</body>
 
 <%- include("../../partials/footer") %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+
+<script>
+    tinymce.init({
+        language: "pt_BR",
+        selector: "#description, #observation",
+        license_key: "gpl",
+        height: 300,
+        menubar: true,
+        plugins: [
+            "advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons"
+        ],
+        toolbar:
+            "undo redo | blocks | bold italic underline | " +
+            "alignleft aligncenter alignright | " +
+            "bullist numlist | link image | table | fullscreen",
+        content_style:
+            "body { font-family: Arial, Helvetica, sans-serif; " +
+            "font-size: 14px; line-height: 1.7; }"
+    });
+</script>

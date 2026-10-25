@@ -11,7 +11,9 @@ const controllerSummary = require("./summary/controllerSummary");
 const Event = require("./event/Event");
 const controllerEvent = require("./event/controllerEvent");
 const controllerUser = require("./user/controllerUser");
-const User = require("./user/User"); 
+const User = require("./user/User");
+const path = require("path"); 
+// pra upload de imagens
 
 app.set("view engine", "ejs");
 
@@ -19,6 +21,7 @@ app.set("view engine", "ejs");
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use(express.static("public"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));// pra upload de imagens
 
 
 connection 
@@ -42,13 +45,16 @@ app.use("/",controllerChapter);
 app.use("/",controllerCharacter);
 app.use("/",controllerSummary);
 app.use("/", controllerEvent);
-app.use("/",controllerUser);
+console.log("Passei pelos controllers");
 
-app.get("/", (req, res) =>{
-    res.render("index")
-})
+app.use("/", controllerUser);
 
+app.get("/", (req, res) => {
+    res.render("index");
+});
 
-app.listen( 3000, () =>{
-    console.log("servidor rodando")
-})
+console.log("Vou iniciar o servidor");
+
+app.listen(3000, () => {
+    console.log("servidor rodando");
+});

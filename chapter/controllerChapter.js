@@ -9,7 +9,7 @@ router.get("/chapter/index", (req,res) =>{
     Chapter.findAll({
         include: [Character],
         order: [
-            ['id','DESC']
+            ['id','ASC']
         ]   
     }).then(chapters =>{
         res.render("chapter/index",{
@@ -22,11 +22,18 @@ router.get("/chapter/index", (req,res) =>{
 })
 
 
-router.get("/chapter/admin/new",(req,res) =>{
-    Character.findAll().then( characters =>{
-        res.render("chapter/admin/new",{characters: characters})
-    })
-})
+router.get("/chapter/admin/new", (req, res) => {
+    Character.findAll().then(characters => {
+        Chapter.findOne({
+            order: [["order", "DESC"]]
+        }).then(lastChapter => {
+            res.render("chapter/admin/new", {
+                characters: characters,
+                lastChapter: lastChapter
+            });
+        });
+    });
+});
 
 
 

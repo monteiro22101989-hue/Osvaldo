@@ -74,8 +74,14 @@
                     </thead>
 
                     <tbody>
+
                         <% events.forEach(event => { %>
-                            <tr onclick="window.location='/event/read/<%-event.id%>';" style="cursor: pointer;">
+
+                            <tr
+                                onclick="window.location='/event/read/<%= event.id %>';"
+                                style="cursor: pointer;"
+                            >
+
                                 <td class="event-title-cell">
                                     <%= event.title %>
                                 </td>
@@ -89,24 +95,51 @@
                                         <%= event.chronologicalOrder %>
                                     </span>
                                 </td>
-                                <td class="character-actions d-flex align-items-center gap-2">
+
+                                <td
+                                    class="event-actions"
+                                    onclick="event.stopPropagation();"
+                                >
+
                                     <a
-                                        class="btn btn-warning mr-2"
-                                        href="/event/admin/edit/<%= event.id %>">
-                                        Editar
+                                        class="btn-event-edit"
+                                        href="/event/admin/edit/<%= event.id %>"
+                                    >
+                                        Edit
                                     </a>
-                                    <form method="post" action="/event/admin/delete" onsubmit="return confirmDelete(this)">
-                                        <input type="hidden" name="id" value="<=%event.id%>">
-                                        <button class="btn btn-danger" type="submit">Delete</button>
+
+                                    <form
+                                        method="post"
+                                        action="/event/admin/delete"
+                                        onsubmit="return confirmDelete();"
+                                    >
+
+                                        <input
+                                            type="hidden"
+                                            name="id"
+                                            value="<%= event.id %>"
+                                        >
+
+                                        <button
+                                            class="btn-event-delete"
+                                            type="submit"
+                                        >
+                                            Delete
+                                        </button>
+
                                     </form>
-                    
-                                 </td>
+
+                                </td>
+
                             </tr>
+
                         <% }) %>
 
                         <% if (events.length === 0) { %>
+
                             <tr>
-                                <td colspan="3" class="event-empty">
+                                <td colspan="4" class="event-empty">
+
                                     <div class="event-empty-icon">✦</div>
 
                                     <h3>No events yet</h3>
@@ -117,12 +150,18 @@
                                         começam aqui.
                                     </p>
 
-                                    <a href="#" class="btn-event-create">
+                                    <a
+                                        href="/event/admin/new"
+                                        class="btn-event-create"
+                                    >
                                         <span>+</span> Create Event
                                     </a>
+
                                 </td>
                             </tr>
+
                         <% } %>
+
                     </tbody>
 
                 </table>
@@ -132,5 +171,11 @@
     </div>
 
 </main>
+
+<script>
+    function confirmDelete() {
+        return confirm("Tens a certeza de que queres eliminar este evento?");
+    }
+</script>
 
 <%- include("../partials/footer") %>
