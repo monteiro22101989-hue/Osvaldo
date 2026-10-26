@@ -3197,3 +3197,34 @@ css
     color: #d9c28e;
     text-decoration: none;
 }
+
+
+/* ===== Paginação das personagens ===== */
+
+.character-page .pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    gap: 12px;
+}
+
+.pagination-button {
+    display: inline-block;
+    padding: 6px 12px;
+    background: #19242d;
+    color: #d5b477;
+    border: 1px solid #d5b477;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 12px;
+}
+
+.pagination-button:hover {
+    background: #d5b477;
+    color: #101820;
+    border-color: #d5b477;
+    transform: translateY(-2px);
+}

@@ -36,7 +36,7 @@ router.post("/event/admin/save",(req,res) =>{
     var local = req.body.local;
     var observation = req.body.observation;
 
-    console.log(req.body)
+     console.log("get all them:", req.body)
 
     if(title && description && time){
         Event.create({
@@ -105,6 +105,8 @@ router.post("/event/save",(req,res)=>{
     var local = req.body.local;
     var observation = req.body.observation;
 
+   
+
     if(title && description && time){
         Event.update({
             title: title,
@@ -129,7 +131,7 @@ router.post("/event/save",(req,res)=>{
 
 router.post("/event/admin/delete",(req,res) =>{
     var id = req.params.id;
-
+    
     if(isNaN(Number(id))){
         res.redirect("/event/index")
     }

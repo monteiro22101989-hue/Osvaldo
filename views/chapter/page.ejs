@@ -1,0 +1,173 @@
+ <%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<main class="chapter-page">
+
+    <!-- Banner principal -->
+    <section class="chapter-hero">
+        <div class="chapter-hero-overlay"></div>
+
+        <div class="chapter-hero-content">
+            <span class="chapter-eyebrow">A TUA HISTÓRIA</span>
+
+            <h1>Constrói a tua narrativa</h1>
+
+            <p>
+                Cada capítulo é uma nova etapa da tua história.
+                Organiza os acontecimentos e dá vida ao teu universo.
+            </p>
+
+            <a href="/chapter/admin/new" class="btn-chapter-create">
+                <span>+</span> Create Chapter
+            </a>
+        </div>
+    </section>
+
+    <!-- Introdução, seguindo o estilo da página inicial -->
+    <section class="chapter-intro">
+        <div class="chapter-intro-heading">
+            <span class="chapter-section-label">A TUA JORNADA</span>
+
+            <h2>Uma história, capítulo a capítulo</h2>
+
+            <p>
+                Organiza a tua narrativa num só lugar, acompanha a ordem
+                dos acontecimentos e mantém as personagens ligadas à história.
+            </p>
+        </div>
+    </section>
+
+    <!-- Área de gestão dos capítulos -->
+    <div class="container chapter-content" id="lista-chapter">
+
+        <section class="chapter-panel">
+
+            <div class="chapter-panel-heading">
+                <div>
+                    <span class="chapter-section-label">GESTÃO DO UNIVERSO</span>
+                    <h2>Chapter Library</h2>
+                    <p>Consulta e gere os capítulos da tua história.</p>
+                </div>
+
+                <span class="chapter-count">
+                    <%= chapters.length %>
+                    <%= chapters.length === 1 ? "chapter" : "chapters" %>
+                </span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table chapter-table">
+
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Order</th>
+                            <th>Characters</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% chapters.forEach(chapter => { %>
+                            <tr onclick="window.location='/chapter/read/<%-chapter.id%>';" style="cursor: pointer;"><!--direciona pra esse lugar quando clicar e qualquer lugar dentro-->
+                                <td class="chapter-title-cell">
+                                    <%-chapter.title %>
+                                </td>
+
+                                <td class="chapter-content-cell">
+                                    <%-chapter.title %>
+                                </td>
+
+                                <td>
+                                    <span class="chapter-order">
+                                        <%-chapter.order %>
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <div class="chapter-character-list ">
+                                        <% if (chapter.characters && chapter.characters.length > 0) { %>
+                                            <% chapter.characters.forEach(character => { %>
+                                                <span class="chapter-character-tag ">
+                                                   <a class="link-cor-character" href="/character/read/<%-character.id%>" ><%- character.name %></a> 
+                                                </span>
+                                            <% }) %>
+                                        <% } else { %>
+                                            <span class="chapter-no-characters">
+                                                No characters
+                                            </span>
+                                        <% } %>
+                                    </div>
+                                </td>
+
+                                <td class="chapter-actions" onclick="event.stopPropagation();" >
+                                    <a
+                                        class="btn-chapter-edit"
+                                        href="/chapter/admin/upDate/<%= chapter.id %>">
+                                        Edit
+                                    </a>
+
+                                    <form
+                                        action="/chapter/delete"
+                                        method="post"
+                                        onsubmit="return confirmDelete();">
+
+                                        <input
+                                            type="hidden"
+                                            name="id"
+                                            value="<%= chapter.id %>">
+
+                                        <button
+                                            type="submit"
+                                            class="btn-chapter-delete">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+
+                        <% if (chapters.length === 0) { %>
+                            <tr>
+                                <td colspan="5" class="chapter-empty">
+                                    <div class="chapter-empty-icon">✦</div>
+                                    <h3>No chapters yet</h3>
+                                    <p>
+                                        Your story starts here.
+                                        Create your first chapter!
+                                    </p>
+                                    <a href="/chapter/admin/new" class="btn-chapter-create">
+                                        + Create Chapter
+                                    </a>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+
+                </table>
+            </div>
+            
+        </section>
+       <div class="row my-2">
+            <div class="col col-12 pagination-container">
+                <%if(result.page > 1){%>
+                    <a class="pagination-button" href="/chapter/page/<%-result.page -1%>#lista-chapter">&lt;&lt; previous</a>
+                <%}%>
+                <%if(result.page == 1){%>
+                    <a class="pagination-button" href="/chapter/index#lista-chapter">&lt;&lt; Previous</a>
+                <%}%>
+                <%if(result.next){%>
+                    <a class="pagination-button"  style="float: right" href="/chapter/page/<%-result.page +1%>#lista-chapter" >Next  &gt;&gt;</a>
+                <%}%>    
+            </div>
+        </div> 
+</main>
+
+<script>
+    function confirmDelete() {
+        return confirm("Do you really want to delete this chapter?");
+    }
+</script>
+
+<%- include("../partials/footer") %>

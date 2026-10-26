@@ -3,6 +3,7 @@ const router = express.Router();
 const Character = require("./Character");
 const path = require("path");
 const multer = require("multer");
+const Chapter = require('../chapter/Chapter');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -22,7 +23,8 @@ router.get("/character/index", (req,res) =>{
     Character.findAll({
         order:[
             ['id','DESC']
-        ]
+        ],
+        limit: 10
     }).then( characters =>{
         res.render("character/index.ejs",{
             characters: characters
@@ -172,8 +174,48 @@ router.post("/character/save",(req,res) =>{
     } else{
         res.redirect("/character/index")
     }
+})
 
 
+router.get("/character/page/:num",(req,res)=>{
+    var page = req.params.num;
+    var offset = 0; // result will be showed after this number
+    var amount = 10;
+    if(isNaN(page) || page == 1){
+        offset = amount;
+    } else{
+        offset = (parseInt(page)) * amount; // numero da pagina vezes isso pois sera apresentado sempre acima das ultimas 20
+    }
+
+    Character.findAndCountAll({
+        limit: amount,
+        offset: offset,
+        order:[
+            ['id','DESC']
+        ]
+    }).then(characters =>{
+        var next;
+
+        if(offset + amount >= characters.count){
+            next = false;
+        } else{
+            next = true;
+        }
+
+        var result ={
+            next: next,
+            characters: characters,
+            page: parseInt(page)
+        }
+
+        
+        res.render("character/page",{
+            result: result,
+            characters: characters.rows
+        })
+    })
+        
 
 })
+
 module.exports = router;

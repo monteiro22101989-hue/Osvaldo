@@ -7,11 +7,13 @@ router.get("/summary/index", (req,res) =>{
     Summary.findAll({
         order:[
             ['id','DESC']
-        ]
+        ],
+        
     }).then(summary =>{
         res.render("summary/index",{
             summary: summary
         })
+    
     }).catch((error)=>{
             console.log("erro to sendo infos")
         })
@@ -30,6 +32,8 @@ router.post("/summary/admin/save",(req,res)=>{
     var content = req.body.content
     var type = req.body.type
     var order = req.body.order
+
+    console.log("dados chegaram:", req.body)
 
     if(title && content){
         Summary.create({
@@ -154,4 +158,49 @@ router.post("/summary/delete",(req,res)=>{
         res.status(500).send("error to delet summary")
     })
 })
+
+/*
+router.get("/summary/page/:num",(req,res) =>{
+    var page = req.params.num;
+    var offset = 0;
+    var amount = 1;
+
+    if(isNaN(page) || page ==1) {
+        offset = amount;
+    } else{
+        offset = (parseInt(page)) * amount
+    }
+
+    Summary.findAndCountAll({
+        limit: amount,
+        offset: offset,
+        order: [
+            ['id','DESC']
+        ]
+    }).then(summary =>{
+        var next;
+
+        if(offset + amount >= summary.count){
+            next = false
+        } else {
+            next = true
+        }
+
+        var result ={
+            next: next,
+            summary: summary,
+            page: parseInt(page)
+        }
+
+        res.render("summary/page",{
+            result:result,
+            summary: summary.rows
+        })
+
+    })
+
+})
+
+*/
+
 module.exports = router;

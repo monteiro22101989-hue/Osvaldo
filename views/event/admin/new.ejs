@@ -1,107 +1,190 @@
-
 <%- include("../../partials/header") %>
-<%- include("../../partials/navbar") %>
+<%-include("../../partials/navbar")%>
+<body>
 
-<div class="chapter-edit-page">
-    <div class="chapter-edit-container">
-
-        <div class="chapter-edit-header">
-            <span>SUMMARY MANAGEMENT</span>
-            <h1>Create Summary</h1>
-            <p>Create a summary for your history.</p>
-        </div>
-
-        <% if(message){ %>
-            <div class="alert alert-<%- messageType %> text-center mx-auto">
-                <%- message %>
+    <div class="chapter-edit-page">
+        <% if (message) { %>
+            <div class="alert alert-<%= messageType %> text-center">
+                <%= message %>
             </div>
         <% } %>
+        <div class="chapter-edit-container">
 
-        <div class="chapter-edit-panel">
+            <!-- Page heading -->
+            <div class="chapter-edit-header">
+                <span class="chapter-edit-eyebrow">
+                    EVENT MANAGEMENT
+                </span>
 
-            <form action="/summary/admin/save" method="post">
+                <h1>Edit Event</h1>
 
-                <div class="chapter-edit-grid">
+                <p>
+                    Update the event details and information.
+                </p>
+            </div>
 
-                    <div class="chapter-edit-group">
-                        <label for="title">Title</label>
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="title"
-                            name="title"
-                            required
-                        >
+            <!-- Edit event form -->
+            <div class="chapter-edit-panel">
+
+                <form action="/event/admin/save" method="POST">
+
+                    <!-- Title and chronological order -->
+                    <div class="chapter-edit-grid">
+
+                        <div class="chapter-edit-group">
+                            <label for="title">
+                                Title
+                            </label>
+
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="title"
+                                name="title"
+                               
+                                placeholder="Enter the event title"
+                                required
+                            >
+                        </div>
+
+                        <div class="chapter-edit-group">
+                            <label for="time">
+                                Chronological Order
+                            </label>
+
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="time"
+                                name="time"
+                                
+                                placeholder="Enter the chronological order"
+                            >
+                        </div>
+
                     </div>
 
-                    <div class="chapter-edit-group">
-                        <label for="type">Type</label>
-                        <input
-                            class="form-control"
-                            type="text"
-                            id="type"
-                            name="type"
-                            required
-                        >
+                    <!-- Importance and location -->
+                    <div class="chapter-edit-grid">
+
+                        <div class="chapter-edit-group">
+                            <label for="importance">
+                                Importance
+                            </label>
+
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="importance"
+                                name="importance"
+                               
+                                placeholder="Enter the event's importance"
+                            >
+                        </div>
+
+                        <div class="chapter-edit-group">
+                            <label for="local">
+                                Location
+                            </label>
+
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="local"
+                                name="local"
+                               
+                                placeholder="Enter the event location"
+                            >
+                        </div>
+
                     </div>
 
-                    <div class="chapter-edit-group">
-                        <label for="order">Order</label>
-                        <input
+                    <!-- Description -->
+                    <div class="chapter-edit-group chapter-edit-content">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
                             class="form-control"
-                            type="number"
-                            id="order"
-                            name="order"
-                            required
-                        >
+                            id="description"
+                            name="description"
+                        ></textarea>
+
                     </div>
 
-                </div>
+                    <!-- Observation -->
+                    <div class="chapter-edit-group chapter-edit-content">
 
-                <div class="chapter-edit-group">
-                    <label for="content">Content</label>
-                    <textarea
-                        class="form-control chapter-edit-content"
-                        id="content"
-                        name="content"
-                        rows="10"
-                        required
-                    ></textarea>
-                </div>
+                        <label for="observation">
+                            Observation
+                        </label>
 
-                <div class="chapter-edit-actions">
+                        <textarea
+                            class="form-control"
+                            id="observation"
+                            name="observation"
+                        ></textarea>
 
-                    <a href="/summary/index" class="btn-chapter-cancel">
-                        Cancel
-                    </a>
+                    </div>
 
-                    <button type="submit" class="btn-chapter-save">
-                        Save Summary
-                    </button>
+                    <!-- Event ID -->
+                    <input
+                        type="hidden"
+                        name="id"
+                       
+                    >
 
-                </div>
+                    <!-- Form actions -->
+                    <div class="chapter-edit-actions">
 
-            </form>
+                        <a
+                            href="/event/index"
+                            class="btn-chapter-cancel"
+                        >
+                            Cancel
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="btn-chapter-save"
+                        >
+                            Save Changes
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
 
         </div>
+
     </div>
-</div>
+
+</body>
+
+<%- include("../../partials/footer") %>
 
 <script src="/tinymce/tinymce.min.js"></script>
 
 <script>
     tinymce.init({
-        language: 'pt_BR',
-        selector: '#content',
-        license_key: 'gpl',
-        height: 400,
+        language: "pt_BR",
+        selector: "#description, #observation",
+        license_key: "gpl",
+        height: 300,
         menubar: true,
         plugins: [
-            'advlist autolink link image lists print preview hr ' +
-            'searchreplace wordcount fullscreen insertdatetime ' +
-            'media save table paste emoticons'
-        ]
+            "advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons"
+        ],
+        toolbar:
+            "undo redo | blocks | bold italic underline | " +
+            "alignleft aligncenter alignright | " +
+            "bullist numlist | link image | table | fullscreen",
+        content_style:
+            "body { font-family: Arial, Helvetica, sans-serif; " +
+            "font-size: 14px; line-height: 1.7; }"
     });
 </script>
-
-<%- include("../../partials/footer") %>

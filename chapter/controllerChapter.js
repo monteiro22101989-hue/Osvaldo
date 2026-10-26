@@ -10,7 +10,8 @@ router.get("/chapter/index", (req,res) =>{
         include: [Character],
         order: [
             ['id','ASC']
-        ]   
+        ],
+        limit: 10 
     }).then(chapters =>{
         res.render("chapter/index",{
             chapters: chapters
@@ -164,6 +165,47 @@ router.get("/chapter/read/:id",(req,res) =>{
     })
 })
 
+router.get("/chapter/page/:num",(req,res) =>{
+    var page = req.params.num;
+    var offset = 0;
+    var amount = 10;
+
+    if(isNaN(page) || page == 1){
+        offset = amount;
+    }else{
+        offset = (parseInt(page)) * amount;
+    }
+
+    Chapter.findAndCountAll({
+        limit: amount,
+        offset: offset,
+        order:[
+            ['id','DESC']
+        ]
+    }).then(chapters =>{
+        var next;
+
+        if(offset + amount >= chapters.count){
+            next = false;
+        } else{
+            next = true;
+        }
+
+        var result ={
+            next: next,
+            chapters:chapters,
+            page: parseInt(page)
+        }
+
+        res.render("chapter/page",{
+            result: result,
+            chapters: chapters.rows
+        })
+
+    })
+
+
+})
 
 
 module.exports = router;

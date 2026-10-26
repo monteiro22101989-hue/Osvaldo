@@ -2,6 +2,7 @@
 <%- include("../../partials/header") %>
 <%- include("../../partials/navbar") %>
 
+
 <div class="chapter-edit-page">
     <div class="chapter-edit-container">
 
@@ -65,7 +66,6 @@
                         id="content"
                         name="content"
                         rows="10"
-                        required
                     ></textarea>
                 </div>
 
@@ -75,7 +75,9 @@
                         Cancel
                     </a>
 
-                    <button type="submit" class="btn-chapter-save">
+                   <button
+                        type="submit"
+                        class="btn-chapter-save">
                         Save Summary
                     </button>
 
@@ -97,14 +99,32 @@
         height: 400,
         menubar: true,
         plugins: [
-            'advlist autolink link image lists print preview hr ' +
-            'searchreplace wordcount fullscreen insertdatetime ' +
-            'media save table paste emoticons'
+            'advlist',
+            'autolink',
+            'link',
+            'image',
+            'lists',
+            'preview',
+            'hr',
+            'searchreplace',
+            'wordcount',
+            'fullscreen',
+            'insertdatetime',
+            'media',
+            'save',
+            'table',
+            'emoticons'
         ],
         toolbar: 'undo redo | blocks | bold italic underline | ' +
             'alignleft aligncenter alignright | ' +
             'bullist numlist | link table | code fullscreen',
-        content_style: 'body { font-family:Arial,sans-serif; font-size:14px }'
+        content_style: 'body { font-family:Arial,sans-serif; font-size:14px }',
+        
+        setup: function (editor) {
+            editor.on('change', function () {
+                editor.save();
+            });
+        }
     });
 </script>
 
