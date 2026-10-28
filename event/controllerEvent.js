@@ -1,16 +1,43 @@
 const express = require("express");
 const router = express.Router();
 const Event = require("./Event");
+const { Op } = require("sequelize");
 
 router.get("/event/index", (req,res) =>{
-    
+    var search = req.query.search; // por conta do filtro
+    var condition = {}; // 
+
+    if(search){
+        condition ={
+            [Op.or]:[
+                {
+                    title:{
+                        [Op.like]:`%${search}%`
+                    }
+                },
+                {
+                    description:{
+                        [Op.like]:`%${search}%`
+                    }
+                },
+                {
+                    chronologicalOrder:{
+                        [Op.like]:`%${search}%`
+                    }
+                }
+            ]
+        }
+    }
     Event.findAll({
+        where: condition, // isso aqui e por conta do filtro da pagina
         order: [
             ['id','DESC']
-        ]
+        ],
+        limit: 10
     }).then(events =>{
         res.render("event/index",{
-            events: events
+            events: events,
+            search: search
         })
     }).catch(error =>{
         console.log(error);
@@ -147,6 +174,41 @@ router.post("/event/admin/delete",(req,res) =>{
     }).catch(error =>{
         console.log("error for delete", error);
         res.redirect("/event/index")
+    })
+})
+
+router.get("/event/page/:num",(req,res) =>{
+    var page = req.params.num;
+    var offset = 0;
+    var amount = 10;
+
+    if(isNaN(page) || page == 1){
+        offset = amount;
+    }else{
+        offset = (parseInt(page)) * amount;
+    }
+    Event.findAndCountAll({
+        limit: amount,
+        offset: offset,
+        oerder:[
+            ['id','DESC']
+        ]
+    }).then(events =>{
+        var next;
+
+        if(offset + amount >= events.count){
+            next = false;
+        } else{
+            next = true;
+        }
+
+        var result ={
+            next:next,
+            events: events,
+            page: parseInt(page)
+        }
+        res.render("event/page",{result:result, events:events.rows })
+
     })
 })
 

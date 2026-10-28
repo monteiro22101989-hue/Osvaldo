@@ -41,9 +41,6 @@
 
     <!-- Área de gestão dos eventos -->
     <div class="container event-content">
-
-        <section class="event-panel">
-
             <div class="event-panel-heading">
                 <div>
                     <span class="event-section-label">
@@ -60,7 +57,10 @@
                     <%= events.length === 1 ? "event" : "events" %>
                 </span>
             </div>
-
+          <form action="/event/index" method="GET" class="chapter-search">
+                <input type="TEXT" name="search" value="<%= search || '' %>" placeholder="search by title, number or  chapter">
+                <button type="submit"> Search</button>
+            </form>
             <div class="table-responsive">
                 <table class="table event-table">
 
@@ -166,8 +166,15 @@
 
                 </table>
             </div>
-
+            
         </section>
+        <div class="row my-2">
+            <div class="col col-12">
+                <a style="float: right" class="pagination-button my-2" href="/event/page/1">next &gt;&gt;</a>
+
+            </div>
+        </div>
+        
     </div>
 
 </main>

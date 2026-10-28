@@ -1,0 +1,194 @@
+
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<main class="summary-page">
+
+    <!-- Banner principal -->
+    <section class="summary-hero">
+        <div class="summary-hero-overlay"></div>
+
+        <div class="summary-hero-content">
+            <span class="summary-eyebrow">A TUA HISTÓRIA</span>
+
+            <h1>Organiza o teu universo</h1>
+
+            <p>
+                Reúne os resumos da tua narrativa, organiza os acontecimentos
+                e mantém os detalhes importantes da tua história sempre acessíveis.
+            </p>
+
+            <a href="/summary/admin/new" class="btn-summary-create">
+                <span>+</span> Criar resumo
+            </a>
+        </div>
+    </section>
+
+    <!-- Introdução -->
+    <section class="summary-intro">
+        <div class="summary-intro-heading">
+            <span class="summary-section-label">A TUA NARRATIVA</span>
+
+            <h2>Os detalhes que dão vida à tua história</h2>
+
+            <p>
+                Organiza os resumos por tipo e ordem para manter todas as informações
+                importantes do teu universo num só lugar.
+            </p>
+        </div>
+    </section>
+
+    <!-- Área de gestão -->
+    <div class="container summary-content" id="lista-summary">
+
+        <section class="summary-panel">
+
+            <div class="summary-panel-heading">
+                <div>
+                    <span class="summary-section-label">GESTÃO DO UNIVERSO</span>
+
+                    <h2>Summary Library</h2>
+
+                    <p>Consulta e gere os resumos da tua história.</p>
+                </div>
+
+                <span class="summary-count">
+                    <%= summary.length %>
+                    <%= summary.length === 1 ? "resumo" : "resumos" %>
+                </span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table summary-table">
+
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>Type</th>
+                            <th>Order</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <% summary.forEach(summary => { %>
+
+                            <tr
+                                onclick="window.location='/summary/read/<%= summary.id %>';"
+                                style="cursor: pointer;"
+                            >
+
+                                <td class="summary-title-cell">
+                                    <%= summary.title %>
+                                </td>
+
+                                <td class="summary-content-cell">
+                                    <%= summary.content %>
+                                </td>
+
+                                <td>
+                                    <span class="summary-type">
+                                        <%= summary.type || "Não definido" %>
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="summary-order">
+                                        <%= summary.order %>
+                                    </span>
+                                </td>
+
+                                <td
+                                  class="summary-actions"
+                                  onclick="event.stopPropagation();"
+                                > 
+                                    <a
+                                        class="btn-summary-edit"
+                                        href="/summary/admin/edit/<%= summary.id %>"
+                                    >
+                                        Edit
+                                    </a>
+
+                                  <form
+                                      method="post"
+                                      action="/summary/delete"
+                                      onsubmit="return confirmDelete();"
+                                  >
+                                      <input
+                                          type="hidden"
+                                          name="id"
+                                          value="<%= summary.id %>"
+                                      >
+
+                                      <button
+                                          class="btn-summary-delete"
+                                          type="submit"
+                                      >
+                                          Delete
+                                      </button>
+                                  </form>
+                              </td>
+
+                            </tr>
+
+                        <% }) %>
+
+                        <% if (summary.length === 0) { %>
+
+                            <tr>
+                                <td colspan="5" class="summary-empty">
+
+                                    <div class="summary-empty-icon">✦</div>
+
+                                    <h3>Ainda não existem resumos</h3>
+
+                                    <p>
+                                        Começa a organizar a tua narrativa criando
+                                        o teu primeiro resumo.
+                                    </p>
+
+                                    <a
+                                        href="/summary/admin/new"
+                                        class="btn-summary-create"
+                                    >
+                                        + Criar primeiro resumo
+                                    </a>
+
+                                </td>
+                            </tr>
+
+                        <% } %>
+
+                    </tbody>
+
+                </table>
+            </div>
+
+        </section>
+        <div class="row my-2">
+            <div class="col col-12">
+                <%if(result.page > 1){%>
+                    <a class="pagination-button" href="/summary/page/<%-result.page -1%>#lista-summary">&lt;&lt; previous</a>
+                <%}%>
+                <%if(result.page == 1){%>
+                    <a class="pagination-button" href="/summary/index#lista-summary">&lt;&lt; Previous</a>
+                <%}%>
+                <%if(result.next){%>
+                    <a class="pagination-button"  style="float: right" href="/summary/page/<%-result.page +1%>#lista-summary" >Next  &gt;&gt;</a>
+                <%}%>  
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+    function confirmDelete() {
+        return confirm("Tens a certeza de que queres eliminar este resumo?");
+    }
+</script>
+
+<%- include("../partials/footer") %>

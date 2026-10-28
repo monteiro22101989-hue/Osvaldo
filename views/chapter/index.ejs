@@ -54,6 +54,12 @@
                     <%= chapters.length === 1 ? "chapter" : "chapters" %>
                 </span>
             </div>
+             <!--Search for chapter-->
+                <form action="/chapter/index" method="GET" class="chapter-search">
+                    <input type="TEXT" name="search" value="<%= search || '' %>" placeholder="search by title, number or  chapter">
+                    <button type="submit"> Search</button>
+                </form>
+
 
             <div class="table-responsive">
                 <table class="table chapter-table">
@@ -61,7 +67,6 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Content</th>
                             <th>Order</th>
                             <th>Characters</th>
                             <th>Actions</th>
@@ -72,10 +77,6 @@
                         <% chapters.forEach(chapter => { %>
                             <tr onclick="window.location='/chapter/read/<%-chapter.id%>';" style="cursor: pointer;"><!--direciona pra esse lugar quando clicar e qualquer lugar dentro-->
                                 <td class="chapter-title-cell">
-                                    <%-chapter.title %>
-                                </td>
-
-                                <td class="chapter-content-cell">
                                     <%-chapter.title %>
                                 </td>
 
@@ -130,7 +131,7 @@
 
                         <% if (chapters.length === 0) { %>
                             <tr>
-                                <td colspan="5" class="chapter-empty">
+                                <td colspan="4" class="chapter-empty">
                                     <div class="chapter-empty-icon">✦</div>
                                     <h3>No chapters yet</h3>
                                     <p>
@@ -164,3 +165,6 @@
 </script>
 
 <%- include("../partials/footer") %>
+
+
+

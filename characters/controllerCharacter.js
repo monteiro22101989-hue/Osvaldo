@@ -4,6 +4,7 @@ const Character = require("./Character");
 const path = require("path");
 const multer = require("multer");
 const Chapter = require('../chapter/Chapter');
+const { Op } = require("sequelize");
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -20,14 +21,42 @@ const upload = multer({ storage: storage });
 
 
 router.get("/character/index", (req,res) =>{
+    var search = req.query.search; // filtro
+    var condition = {}; // filtro
+
+    if(search){
+        condition ={
+            [Op.or]:[
+                {
+                    name: {
+                        [Op.like]: `%${search}%`
+                    }
+                },
+                {
+                    nickname: {
+                        [Op.like]: `%${search}%`
+                    }
+                },
+                {
+                    state: {
+                        [Op.like]: `%${search}%`
+                    }
+                }
+                    
+            ]
+        }
+    }
+
     Character.findAll({
+        where: condition, // isso aqui e por conta do filtro da pagina
         order:[
             ['id','DESC']
         ],
         limit: 10
     }).then( characters =>{
-        res.render("character/index.ejs",{
-            characters: characters
+        res.render("character/index",{
+            characters: characters,
+            search: search
         })
     })
     

@@ -67,6 +67,12 @@
                 </div>
 
             <% } else { %>
+                <!--Search for character-->
+
+                <form action="/character/index" method="GET" class="chapter-search">
+                    <input type="TEXT" name="search" value="<%= search || '' %>" placeholder="search by title, number or  chapter">
+                    <button type="submit"> Search</button>
+                </form>
 
                 <div class="table-responsive">
                     <table class="table character-table">

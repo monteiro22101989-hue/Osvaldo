@@ -39,10 +39,13 @@
     </section>
 
     <!-- Área de gestão -->
-    <div class="container summary-content">
+    <div class="container summary-content #lista-summary">
 
         <section class="summary-panel">
-
+        <form action="/summary/index" method="GET" class="chapter-search">
+                <input type="TEXT" name="search" value="<%= search || '' %>" placeholder="search by title, number or  chapter">
+                <button type="submit"> Search</button>
+            </form>    
             <div class="summary-panel-heading">
                 <div>
                     <span class="summary-section-label">GESTÃO DO UNIVERSO</span>
@@ -168,11 +171,11 @@
 
         </section>
         <div class="row my-2">
-            <div class="col col-12">
-                <a style="float: right;" class="pagination-button my-2" href="/summary/page/1">next &gt;&gt;</a>
+                <div class="col col-12">
+                    <a style="float: right;" class="pagination-button my-2" href="/summary/page/1">next &gt;&gt;</a>
+                </div>
             </div>
-        </div>
-
+ 
     </div>
 
 </main>

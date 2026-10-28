@@ -1,17 +1,45 @@
 const express = require("express");
 const router = express.Router();
 const Summary = require("./Summary")
+const { Op } = require("sequelize"); //filtro
 
 router.get("/summary/index", (req,res) =>{
-   
+    var search = req.query.search;
+    var condition = {};
+
+    if(search){ //por conta do filtro
+            condition ={
+                [Op.or]:[
+                    {
+                        title:{
+                            [Op.like]:`%${search}%`
+                        }
+                    },
+                    {
+                        type:{
+                            [Op.like]:`%${search}%`
+                        }
+                    },
+                    {
+                        Order:{
+                            [Op.like]:`%${search}%`
+                        }
+                    }
+                ]
+            }
+        }
+
+
     Summary.findAll({
+        where: condition,
         order:[
             ['id','DESC']
         ],
-        
+        limit: 10
     }).then(summary =>{
         res.render("summary/index",{
-            summary: summary
+            summary: summary,
+            search: search
         })
     
     }).catch((error)=>{
@@ -159,12 +187,13 @@ router.post("/summary/delete",(req,res)=>{
     })
 })
 
-/*
+
 router.get("/summary/page/:num",(req,res) =>{
     var page = req.params.num;
     var offset = 0;
-    var amount = 1;
+    var amount = 10;
 
+   
     if(isNaN(page) || page ==1) {
         offset = amount;
     } else{
@@ -191,7 +220,7 @@ router.get("/summary/page/:num",(req,res) =>{
             summary: summary,
             page: parseInt(page)
         }
-
+       
         res.render("summary/page",{
             result:result,
             summary: summary.rows
@@ -201,6 +230,6 @@ router.get("/summary/page/:num",(req,res) =>{
 
 })
 
-*/
+
 
 module.exports = router;

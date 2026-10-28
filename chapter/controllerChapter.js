@@ -2,24 +2,57 @@ const express = require("express");
 const router = express.Router();
 const Chapter = require("./Chapter");
 const Character = require("../characters/Character")
-
+const { Op } = require("sequelize");
 
 //index
 router.get("/chapter/index", (req,res) =>{
+    var search = req.query.search;
+    var condition = {};
+
+    if(search){
+        condition ={
+            [Op.or]:[
+                {
+                    title: {
+                        [Op.like]: `%${search}%`
+                    }
+                },
+                {
+                    order: search
+                },
+                {
+                    "$characters.name$":{
+                        [Op.like]: `%${search}%`
+                    }
+                }
+            ]
+            
+        }
+    }
+
+    
     Chapter.findAll({
-        include: [Character],
+        where: condition,
+        include: [{
+            model: Character,
+            required: false
+        }],
         order: [
-            ['id','ASC']
+            ['order', 'ASC']
         ],
-        limit: 10 
-    }).then(chapters =>{
-        res.render("chapter/index",{
-            chapters: chapters
-        });  
-    }).catch( error =>{
-        console.log(error);
-        res.status(500).send("Erro ao buscar capitulos")
-    })
+        limit: 5
+    }).then(chapters => {
+
+        res.render("chapter/index", {
+            chapters: chapters,
+            search: search
+        });
+
+    }).catch(error => {
+        console.error("Erro na pesquisa de capítulos:", error);
+        res.status(500).send("Erro ao buscar capitulos");
+    });
+
 })
 
 
@@ -168,7 +201,7 @@ router.get("/chapter/read/:id",(req,res) =>{
 router.get("/chapter/page/:num",(req,res) =>{
     var page = req.params.num;
     var offset = 0;
-    var amount = 10;
+    var amount = 5;
 
     if(isNaN(page) || page == 1){
         offset = amount;
@@ -179,30 +212,35 @@ router.get("/chapter/page/:num",(req,res) =>{
     Chapter.findAndCountAll({
         limit: amount,
         offset: offset,
-        order:[
-            ['id','DESC']
+        include: [{
+            model: Character,
+            required: false
+        }],
+        distinct: true,
+        order: [
+            ['id', 'DESC']
         ]
-    }).then(chapters =>{
+    }).then(chapters => {
         var next;
 
-        if(offset + amount >= chapters.count){
+        if (offset + amount >= chapters.count) {
             next = false;
-        } else{
+        } else {
             next = true;
         }
 
-        var result ={
+        var result = {
             next: next,
-            chapters:chapters,
+            chapters: chapters,
             page: parseInt(page)
-        }
+        };
 
-        res.render("chapter/page",{
+        res.render("chapter/page", {
             result: result,
             chapters: chapters.rows
-        })
+        });
+    });
 
-    })
 
 
 })

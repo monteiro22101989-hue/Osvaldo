@@ -1,0 +1,195 @@
+
+<%- include("../partials/header") %>
+<%- include("../partials/navbar") %>
+
+<main class="event-page">
+
+    <!-- Banner principal -->
+    <section class="event-hero">
+        <div class="event-hero-overlay"></div>
+
+        <div class="event-hero-content">
+            <span class="event-eyebrow">O TEU UNIVERSO</span>
+
+            <h1>Os acontecimentos da tua história</h1>
+
+            <p>
+                Regista os momentos importantes, organiza a cronologia
+                e acompanha tudo o que acontece no teu universo.
+            </p>
+
+            <a href="/event/admin/new" class="btn-event-create">
+                <span>+</span> Create Event
+            </a>
+        </div>
+    </section>
+
+    <!-- Introdução -->
+    <section class="event-intro">
+        <div class="event-intro-heading">
+            <span class="event-section-label">A LINHA DO TEMPO</span>
+
+            <h2>Cada acontecimento conta uma história</h2>
+
+            <p>
+                Reúne os acontecimentos mais importantes num só lugar.
+                Organiza a sequência dos eventos e mantém a cronologia
+                do teu universo sempre clara.
+            </p>
+        </div>
+    </section>
+
+    <!-- Área de gestão dos eventos -->
+    <div class="container event-content" id="lista-event">
+
+        <section class="event-panel">
+
+            <div class="event-panel-heading">
+                <div>
+                    <span class="event-section-label">
+                        GESTÃO DO UNIVERSO
+                    </span>
+
+                    <h2>Event Library</h2>
+
+                    <p>Consulta os acontecimentos do teu universo.</p>
+                </div>
+
+                <span class="event-count">
+                    <%= events.length %>
+                    <%= events.length === 1 ? "event" : "events" %>
+                </span>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table event-table">
+
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Chronological Order</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <% events.forEach(event => { %>
+
+                            <tr
+                                onclick="window.location='/event/read/<%= event.id %>';"
+                                style="cursor: pointer;"
+                            >
+
+                                <td class="event-title-cell">
+                                    <%= event.title %>
+                                </td>
+
+                                <td class="event-description-cell">
+                                    <%= event.description %>
+                                </td>
+
+                                <td>
+                                    <span class="event-order">
+                                        <%= event.chronologicalOrder %>
+                                    </span>
+                                </td>
+
+                                <td
+                                    class="event-actions"
+                                    onclick="event.stopPropagation();"
+                                >
+
+                                    <a
+                                        class="btn-event-edit"
+                                        href="/event/admin/edit/<%= event.id %>"
+                                    >
+                                        Edit
+                                    </a>
+
+                                    <form
+                                        method="post"
+                                        action="/event/admin/delete"
+                                        onsubmit="return confirmDelete();"
+                                    >
+
+                                        <input
+                                            type="hidden"
+                                            name="id"
+                                            value="<%= event.id %>"
+                                        >
+
+                                        <button
+                                            class="btn-event-delete"
+                                            type="submit"
+                                        >
+                                            Delete
+                                        </button>
+
+                                    </form>
+
+                                </td>
+
+                            </tr>
+
+                        <% }) %>
+
+                        <% if (events.length === 0) { %>
+
+                            <tr>
+                                <td colspan="4" class="event-empty">
+
+                                    <div class="event-empty-icon">✦</div>
+
+                                    <h3>No events yet</h3>
+
+                                    <p>
+                                        Ainda não existem eventos.
+                                        Os acontecimentos da tua história
+                                        começam aqui.
+                                    </p>
+
+                                    <a
+                                        href="/event/admin/new"
+                                        class="btn-event-create"
+                                    >
+                                        <span>+</span> Create Event
+                                    </a>
+
+                                </td>
+                            </tr>
+
+                        <% } %>
+
+                    </tbody>
+
+                </table>
+            </div>
+            
+        </section>
+        <div class="row my-2">
+            <div class="col col-12">
+                <%if(result.page > 1){%>
+                    <a class="pagination-button" href="/event/page/<%-result.page -1%>#lista-event">&lt;&lt; previous</a>
+                <%}%>
+                <%if(result.page == 1){%>
+                    <a class="pagination-button" href="/event/index#lista-event">&lt;&lt; Previous</a>
+                <%}%>
+                <%if(result.next){%>
+                    <a class="pagination-button"  style="float: right" href="/event/page/<%-result.page +1%>#lista-event" >Next  &gt;&gt;</a>
+                <%}%>    
+            </div>
+        </div>
+        
+    </div>
+
+</main>
+
+<script>
+    function confirmDelete() {
+        return confirm("Tens a certeza de que queres eliminar este evento?");
+    }
+</script>
+
+<%- include("../partials/footer") %>
