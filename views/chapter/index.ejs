@@ -68,7 +68,6 @@
                         <tr>
                             <th>Title</th>
                             <th>Order</th>
-                            <th>Characters</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -86,21 +85,7 @@
                                     </span>
                                 </td>
 
-                                <td>
-                                    <div class="chapter-character-list ">
-                                        <% if (chapter.characters && chapter.characters.length > 0) { %>
-                                            <% chapter.characters.forEach(character => { %>
-                                                <span class="chapter-character-tag ">
-                                                   <a class="link-cor-character" href="/character/read/<%-character.id%>" ><%- character.name %></a> 
-                                                </span>
-                                            <% }) %>
-                                        <% } else { %>
-                                            <span class="chapter-no-characters">
-                                                No characters
-                                            </span>
-                                        <% } %>
-                                    </div>
-                                </td>
+                               
 
                                 <td class="chapter-actions" onclick="event.stopPropagation();" >
                                     <a
@@ -131,7 +116,7 @@
 
                         <% if (chapters.length === 0) { %>
                             <tr>
-                                <td colspan="4" class="chapter-empty">
+                                <td colspan="3" class="chapter-empty">
                                     <div class="chapter-empty-icon">✦</div>
                                     <h3>No chapters yet</h3>
                                     <p>

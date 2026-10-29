@@ -33,6 +33,38 @@
             <div class="chapter-read-content">
                 <%- chapters.content %>
             </div>
+            
+            
+            <div class="chapter-read-characters">
+
+                <h2>Characters in this Chapter</h2>
+
+                <div class="chapter-character-list">
+
+                    <% if (chapters.characters && chapters.characters.length > 0) { %>
+
+                        <% chapters.characters.forEach(character => { %>
+
+                            <a class="chapter-read-character-link"
+                            href="/character/read/<%= character.id %>">
+                                <%= character.name %>
+                            </a>
+
+                        <% }) %>
+
+                    <% } else { %>
+
+                        <span class="chapter-no-characters">
+                            No characters
+                        </span>
+
+                    <% } %>
+
+                </div>
+
+            </div>
+
+
 
             <footer class="chapter-read-footer">
                 End of chapter
@@ -40,6 +72,7 @@
             </footer>
 
         </article>
+
 
     </div>
 </div>

@@ -3291,3 +3291,57 @@ css
         box-sizing: border-box;
     }
 }
+
+
+/* ===== Personagens na leitura do capítulo ===== */
+
+.chapter-read-characters {
+    margin-top: 35px;
+    padding-top: 22px;
+    border-top: 1px solid var(--narneiro-border);
+}
+
+.chapter-read-characters h2 {
+    margin: 0 0 16px;
+    color: var(--narneiro-gold);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.chapter-read-characters .chapter-character-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chapter-read-character-link,
+.chapter-read-character-link:visited {
+    display: inline-block;
+    padding: 6px 10px;
+    border: 1px solid #354753;
+    border-radius: 4px;
+    background: #202e38;
+    color: #d9c28e;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.chapter-read-character-link:hover,
+.chapter-read-character-link:focus {
+    border-color: var(--narneiro-gold);
+    background: #263640;
+    color: var(--narneiro-gold);
+    text-decoration: none;
+}
+
+.chapter-read-character-link:active {
+    color: var(--narneiro-gold);
+}
+
+@media (max-width: 600px) {
+    .chapter-read-characters {
+        margin-top: 28px;
+        padding-top: 18px;
+    }
+}

@@ -33,10 +33,7 @@ router.get("/chapter/index", (req,res) =>{
     
     Chapter.findAll({
         where: condition,
-        include: [{
-            model: Character,
-            required: false
-        }],
+       
         order: [
             ['order', 'ASC']
         ],
@@ -187,8 +184,15 @@ router.post("/chapter/delete", (req,res) =>{
 
 router.get("/chapter/read/:id",(req,res) =>{
     var id = req.params.id;
-    Chapter.findByPk(id)
+    Chapter.findByPk(id, {
+        include: [{
+            model:Character
+        }]
+    })
     .then(chapters =>{
+        if(!chapters){
+            res.redirect("/chapter/index")
+        }
         res.render("chapter/read",{
             chapters: chapters
         })
