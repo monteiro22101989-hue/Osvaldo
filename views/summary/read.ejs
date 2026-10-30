@@ -1,7 +1,7 @@
-```ejs
+
 <%- include("../partials/header") %>
 <%- include("../partials/navbar") %>
-
+<div class="narneiro-background">
 <% if (message) { %>
     <div class="alert alert-<%= messageType %> text-center mx-auto summary-read-message">
         <%= message %>
@@ -68,5 +68,5 @@
 
     </div>
 </div>
-
+</div>
 <%- include("../partials/footer") %>

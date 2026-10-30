@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg narneiro-navbar">
 
     <!-- Logo / Nome -->
-    <a class="navbar-brand narneiro-brand" href="/">
+    <a class="navbar-brand narneiro-brand" href="/index">
         <span class="brand-symbol">N</span>
         <span>Narneiro</span>
     </a>
@@ -19,44 +19,49 @@
     >
         <span class="navbar-toggler-icon"></span>
     </button>
+    <%if(!paginaPublica){%>
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="narneiroNavbar">
 
-    <!-- Links -->
-    <div class="collapse navbar-collapse" id="narneiroNavbar">
+            <ul class="navbar-nav ml-auto align-items-lg-center">
 
-        <ul class="navbar-nav ml-auto align-items-lg-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index">
+                        Início
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/">
-                    Início
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/chapter/index">
+                        Capítulos
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/chapter/index">
-                    Capítulos
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/character/index">
+                        Personagens
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/character/index">
-                    Personagens
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/summary/index">
+                        Resumos
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/summary/index">
-                    Resumos
-                </a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/event/index">
+                        Eventos
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="/logout">
+                        Log out
+                    </a>
+                </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/event/index">
-                    Eventos
-                </a>
-            </li>
+            </ul>
 
-        </ul>
-
-    </div>
-
+        </div>
+    <%}%>        
 </nav>

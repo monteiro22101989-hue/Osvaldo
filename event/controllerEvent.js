@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Event = require("./Event");
 const { Op } = require("sequelize");
+const adminauth = require("../middlewares/adminAuth")
 
-router.get("/event/index", (req,res) =>{
+router.get("/event/index",adminauth, (req,res) =>{
     var search = req.query.search; // por conta do filtro
     var condition = {}; // 
 
@@ -46,7 +47,7 @@ router.get("/event/index", (req,res) =>{
     
 })
 
-router.get("/event/admin/new",(req,res) =>{
+router.get("/event/admin/new",adminauth, (req,res) =>{
     const success = req.query.success = "1";
 
     res.render("event/admin/new",{
@@ -55,7 +56,7 @@ router.get("/event/admin/new",(req,res) =>{
     })
 })
 
-router.post("/event/admin/save",(req,res) =>{
+router.post("/event/admin/save",adminauth,(req,res) =>{
     var title = req.body.title;
     var description = req.body.description
     var time = req.body.time;
@@ -87,7 +88,7 @@ router.post("/event/admin/save",(req,res) =>{
     }
 })
 
-router.get("/event/read/:id",(req,res)=>{
+router.get("/event/read/:id",adminauth,(req,res)=>{
     var id = req.params.id;
     if(id){
         Event.findByPk(id)
@@ -101,7 +102,7 @@ router.get("/event/read/:id",(req,res)=>{
     }   
 })
 
-router.get("/event/admin/edit/:id",(req,res) =>{
+router.get("/event/admin/edit/:id",adminauth,(req,res) =>{
     var id = req.params.id;
     console.log("number:",id)
 
@@ -123,7 +124,7 @@ router.get("/event/admin/edit/:id",(req,res) =>{
     })
 })
 
-router.post("/event/save",(req,res)=>{
+router.post("/event/save",adminauth,(req,res)=>{
     var id = req.body.id;
     var title = req.body.title;
     var description = req.body.description
@@ -156,7 +157,7 @@ router.post("/event/save",(req,res)=>{
     }
 })
 
-router.post("/event/admin/delete",(req,res) =>{
+router.post("/event/admin/delete",adminauth,(req,res) =>{
     var id = req.params.id;
     
     if(isNaN(Number(id))){
@@ -177,7 +178,7 @@ router.post("/event/admin/delete",(req,res) =>{
     })
 })
 
-router.get("/event/page/:num",(req,res) =>{
+router.get("/event/page/:num",adminauth,(req,res) =>{
     var page = req.params.num;
     var offset = 0;
     var amount = 10;

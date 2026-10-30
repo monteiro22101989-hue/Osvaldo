@@ -2,8 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Summary = require("./Summary")
 const { Op } = require("sequelize"); //filtro
+const adminauth = require("../middlewares/adminAuth");
 
-router.get("/summary/index", (req,res) =>{
+router.get("/summary/index", adminauth,(req,res) =>{
     var search = req.query.search;
     var condition = {};
 
@@ -48,14 +49,14 @@ router.get("/summary/index", (req,res) =>{
     
 })
 
-router.get("/summary/admin/new", (req,res) =>{
+router.get("/summary/admin/new", adminauth,(req,res) =>{
     res.render("summary/admin/new",{
         message: null,
         messageType: "success"
     })
 })
 
-router.post("/summary/admin/save",(req,res)=>{
+router.post("/summary/admin/save",adminauth,(req,res)=>{
     var title = req.body.title
     var content = req.body.content
     var type = req.body.type
@@ -87,7 +88,7 @@ router.post("/summary/admin/save",(req,res)=>{
     }
 })
 
-router.get("/summary/read/:id",(req,res)=>{
+router.get("/summary/read/:id",adminauth,(req,res)=>{
     var id = req.params.id;
 
 
@@ -111,7 +112,7 @@ router.get("/summary/read/:id",(req,res)=>{
     }
 })
 
-router.get("/summary/admin/edit/:id", (req,res)=>{
+router.get("/summary/admin/edit/:id", adminauth,(req,res)=>{
     var id = req.params.id;
     console.log("we get the requisition",id)
 
@@ -133,7 +134,7 @@ router.get("/summary/admin/edit/:id", (req,res)=>{
 })
 
 
-router.post("/summary/admin/upDate", (req,res)=>{
+router.post("/summary/admin/upDate", adminauth,(req,res)=>{
     var id = req.body.id;
     var title = req.body.title;
     var content = req.body.content;
@@ -164,7 +165,7 @@ router.post("/summary/admin/upDate", (req,res)=>{
 })
 
 
-router.post("/summary/delete",(req,res)=>{
+router.post("/summary/delete",adminauth,(req,res)=>{
     var id = req.body.id;
 
     console.log("Chegou aqui:", id)
@@ -188,7 +189,7 @@ router.post("/summary/delete",(req,res)=>{
 })
 
 
-router.get("/summary/page/:num",(req,res) =>{
+router.get("/summary/page/:num",adminauth,(req,res) =>{
     var page = req.params.num;
     var offset = 0;
     var amount = 10;

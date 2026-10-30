@@ -3,9 +3,10 @@ const router = express.Router();
 const Chapter = require("./Chapter");
 const Character = require("../characters/Character")
 const { Op } = require("sequelize");
+const adminauth = require("../middlewares/adminAuth");
 
 //index
-router.get("/chapter/index", (req,res) =>{
+router.get("/chapter/index", adminauth,(req,res) =>{
     var search = req.query.search;
     var condition = {};
 
@@ -19,21 +20,19 @@ router.get("/chapter/index", (req,res) =>{
                 },
                 {
                     order: search
-                },
-                {
-                    "$characters.name$":{
-                        [Op.like]: `%${search}%`
-                    }
                 }
+               
             ]
             
         }
     }
 
-    
     Chapter.findAll({
         where: condition,
-       
+        include: [{
+            model: Character,
+            required: false
+        }],
         order: [
             ['order', 'ASC']
         ],
@@ -53,12 +52,15 @@ router.get("/chapter/index", (req,res) =>{
 })
 
 
-router.get("/chapter/admin/new", (req, res) => {
+router.get("/chapter/admin/new", adminauth,(req, res) => {
+    
     Character.findAll().then(characters => {
         Chapter.findOne({
             order: [["order", "DESC"]]
         }).then(lastChapter => {
             res.render("chapter/admin/new", {
+                message: null,
+                messageType:"success",
                 characters: characters,
                 lastChapter: lastChapter
             });
@@ -69,40 +71,60 @@ router.get("/chapter/admin/new", (req, res) => {
 
 
 
-router.post("/chapter/admin/save",(req,res) =>{
-
-   
+router.post("/chapter/admin/save",adminauth,(req,res) =>{
     var title = req.body.title;
     var content = req.body.content;
     var order = req.body.ordem;
     var characters = req.body["characters[]"];
 
-console.log("Personagens selecionados:", characters);
+    console.log("Personagens selecionados:", characters);
+
     if(title && content && order){
-        Chapter.create({
-            title: title,
-            content: content,
-            order: order
-        })
-        .then(chapter =>{
-            if(characters){
-                return chapter.setCharacters(characters);
+
+        Chapter.findOne({
+            where: {
+                order: order
             }
-            
+        }).then(chapter =>{
+            if(chapter){
+                return Character.findAll().then(characters =>{
+                return Chapter.findOne({
+                    order: [["order", "DESC"]]
+                }).then(lastChapter =>{
+                    return res.render("chapter/admin/new",{
+                        characters: characters,
+                        lastChapter: lastChapter,
+                        message: "numero de capitulo ja existente",
+                        messageType: "danger"
+                    })
+                })
+            })
+            }else{
+                Chapter.create({
+                    title: title,
+                    content: content,
+                    order: order
+                })
+                .then(chapter =>{
+                    if(characters){
+                        return chapter.setCharacters(characters);
+                    }
+                })
+                .then(() =>{
+                    res.redirect("/chapter/index");
+                })
+                .catch((error) =>{
+                    console.log(error);
+                    res.redirect("/chapter/index");
+                })
+            }
         })
-        .then( () =>{
-            res.redirect("/chapter/index");
-           // res.json({mßessage: "Capitulo criado com sucesso!"});
-            
-        }).catch((error) =>{
-            res.redirect("/chapter/index")
-        })
+
     }else{
         res.redirect("/chapter/admin/new")
     }
 })
-
-router.get("/chapter/admin/upDate/:id",(req,res) =>{
+router.get("/chapter/admin/upDate/:id",adminauth,(req,res) =>{
     var id = req.params.id;
 
     
@@ -130,7 +152,7 @@ router.get("/chapter/admin/upDate/:id",(req,res) =>{
     })
 })
 
-router.post("/chapter/save", (req,res) =>{
+router.post("/chapter/save", adminauth,(req,res) =>{
    var id = req.body.id;
    var title = req.body.title;
    var content = req.body.content;
@@ -182,7 +204,7 @@ router.post("/chapter/delete", (req,res) =>{
     })
 })
 
-router.get("/chapter/read/:id",(req,res) =>{
+router.get("/chapter/read/:id",adminauth,(req,res) =>{
     var id = req.params.id;
     Chapter.findByPk(id, {
         include: [{
@@ -202,7 +224,7 @@ router.get("/chapter/read/:id",(req,res) =>{
     })
 })
 
-router.get("/chapter/page/:num",(req,res) =>{
+router.get("/chapter/page/:num",adminauth,(req,res) =>{
     var page = req.params.num;
     var offset = 0;
     var amount = 5;

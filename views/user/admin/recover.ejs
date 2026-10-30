@@ -1,0 +1,37 @@
+<%- include("../../partials/header") %>
+
+<div class="narneiro-background">
+    <div class="user-register-page">
+        <div class="user-register-card">
+            <%if(message){%>
+                <div class="alert alert-<%= messageType%> text-center">
+                    <%-message%>
+                </div>
+             <%}%>  
+            <h2>Recover Password</h2>
+            <p>Enter your registered email address.</p>
+
+            <form action="/user/admin/recoverEmail" method="POST">
+
+                <div class="mb-3">
+                    <label>Email</label>
+                    <input type="email" name="email" class="form-control" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">
+                    Recover Password
+                </button>
+
+                <div class="text-center mt-3">
+                    <a href="/user/login" class="back-to-login">
+                        ← Back to Login
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<%- include("../../partials/footer") %>

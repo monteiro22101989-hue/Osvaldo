@@ -643,13 +643,6 @@ body {
     color: #b5bec4;
 }
 
-/* ===== 6. Capítulos ===== */
-
-.chapter-page {
-    min-height: 70vh;
-    background: var(--narneiro-bg);
-    color: var(--narneiro-text);
-}
 
 /* Mantém o conteúdo abaixo do banner alinhado */
 .chapter-page .chapter-content {
@@ -3344,4 +3337,189 @@ css
         margin-top: 28px;
         padding-top: 18px;
     }
+}
+
+
+
+/* ===== Login Page ===== */
+
+.login-page {
+    width: 100%;
+    min-height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    background: var(--narneiro-bg);
+}
+
+.login-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
+    background: var(--narneiro-card);
+    border: 1px solid rgba(213, 180, 119, 0.3);
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 25px 20px;
+    }
+}
+
+/* ===== Fundo da página de login ===== */
+
+.login-background {
+    background:
+        linear-gradient(
+            rgba(16, 24, 32, 0.78),
+            rgba(16, 24, 32, 0.88)
+        ),
+        url("/img/map.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 80vh;
+}
+
+.narneiro-background {
+    background-image:
+        linear-gradient(
+            rgba(16, 24, 32, 0.55),
+            rgba(16, 24, 32, 0.70)
+        ),
+        url("/img/map.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* ===== 6. Capítulos ===== */
+
+.chapter-page {
+    min-height: 70vh;
+    background: var(--narneiro-bg);
+    color: var(--narneiro-text);
+}
+
+
+/* ===== CADASTRO DE USUÁRIO ===== */
+
+.user-register-page {
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 15px;
+    color: var(--narneiro-text);
+}
+
+.user-register-card {
+    width: 100%;
+    max-width: 480px;
+    padding: 35px;
+    background: rgba(16, 24, 32, 0.94);
+    border: 1px solid var(--narneiro-gold);
+    border-radius: 10px;
+}
+
+.user-register-card h2 {
+    color: var(--narneiro-gold);
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.user-register-subtitle {
+    text-align: center;
+    color: #b8c0c8;
+    margin-bottom: 30px;
+}
+
+.user-register-card .form-label {
+    color: var(--narneiro-gold);
+}
+
+.user-register-card .form-control {
+    background: #19242d;
+    border: 1px solid #46515b;
+    color: white;
+    padding: 11px;
+}
+
+.user-register-card .form-control:focus {
+    background: #19242d;
+    color: white;
+    border-color: var(--narneiro-gold);
+    box-shadow: none;
+}
+
+.user-register-card .form-control::placeholder {
+    color: #89939d;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 12px;
+    background: var(--narneiro-gold);
+    color: #101820;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-register:hover {
+    background: #e5c681;
+}
+
+.user-register-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #b8c0c8;
+}
+
+.user-register-footer a {
+    color: var(--narneiro-gold);
+    text-decoration: none;
+}
+
+.user-register-footer a:hover {
+    text-decoration: underline;
+}
+
+.back-to-login {
+    color: #d5b477;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.back-to-login:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.back-to-login {
+    display: inline-block;
+    color: #d5b477;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.back-to-login:hover {
+    color: #ffffff;
+    opacity: 1;
 }

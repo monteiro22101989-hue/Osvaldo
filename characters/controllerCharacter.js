@@ -5,6 +5,7 @@ const path = require("path");
 const multer = require("multer");
 const Chapter = require('../chapter/Chapter');
 const { Op } = require("sequelize");
+const adminauth = require("../middlewares/adminAuth")
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -20,7 +21,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 
-router.get("/character/index", (req,res) =>{
+router.get("/character/index",adminauth, (req,res) =>{
     var search = req.query.search; // filtro
     var condition = {}; // filtro
 
@@ -62,11 +63,11 @@ router.get("/character/index", (req,res) =>{
     
 })
 
-router.get("/character/admin/new", (req,res) =>{
+router.get("/character/admin/new", adminauth,(req,res) =>{
     res.render("character/admin/new");
 })
 
-router.post("/character/admin/save", upload.single("image"), (req,res)=>{
+router.post("/character/admin/save",adminauth, upload.single("image"), (req,res)=>{
    var name = req.body.name;
     var nickname = req.body.nickname;
     var description = req.body.description;
@@ -108,7 +109,7 @@ router.post("/character/admin/save", upload.single("image"), (req,res)=>{
 })
 
 
-router.post("/character/delete", (req,res) =>{
+router.post("/character/delete",adminauth, (req,res) =>{
     var id = req.body.id;
 
     Character.findByPk(id).then(characters =>{
@@ -129,7 +130,7 @@ router.post("/character/delete", (req,res) =>{
     
 })
 
-router.get("/character/read/:id",(req,res) =>{
+router.get("/character/read/:id",adminauth, (req,res) =>{
     var id = req.params.id;
     if(id){
         Character.findByPk(id).then(characters =>{
@@ -146,7 +147,7 @@ router.get("/character/read/:id",(req,res) =>{
 
 })
 
-router.get("/character/admin/update/:id",(req,res) =>{
+router.get("/character/admin/update/:id",adminauth,(req,res) =>{
     var id = req.params.id;
 
     if(isNaN(Number(id))){
@@ -167,7 +168,7 @@ router.get("/character/admin/update/:id",(req,res) =>{
     
 })
 
-router.post("/character/save",(req,res) =>{
+router.post("/character/save",adminauth,(req,res) =>{
     var name = req.body.name;
     var nickname = req.body.nickname;
     var description = req.body.description;
@@ -206,7 +207,7 @@ router.post("/character/save",(req,res) =>{
 })
 
 
-router.get("/character/page/:num",(req,res)=>{
+router.get("/character/page/:num",adminauth,(req,res)=>{
     var page = req.params.num;
     var offset = 0; // result will be showed after this number
     var amount = 10;

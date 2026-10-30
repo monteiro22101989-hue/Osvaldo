@@ -2,9 +2,14 @@
  <%-include("../../partials/navbar")%>
 
 <body>
+    
 
     <div class="chapter-edit-page">
-
+        <% if (message) { %>
+            <div class="alert alert-<%= messageType %> text-center">
+                <%= message %>
+            </div>
+        <% } %>
         <div class="chapter-edit-container">
 
             <!-- Page heading -->
